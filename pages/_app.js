@@ -1,8 +1,9 @@
 import "styles/globals.scss";
 
 import Navbar from "components/Navbar/Navbar";
-// import Footer from "components/Footer/Footer";
-import CookieConsent from "components/CookieConsent/CookieConsent";
+import Footer from "components/Footer/Footer";
+
+// import CookieConsent from "components/CookieConsent/CookieConsent";
 
 import moment from "moment";
 
@@ -18,17 +19,17 @@ const App = ({ Component, pageProps }) => {
 	const colourPalette = useState();
 	moment.locale(locale);
 	const NavbarComponent = Component.Navbar || Navbar;
+	const FooterComponent = Component.Footer || Footer;
 
-	// const FooterComponent = Component.Footer || Footer;
 	return (
 		<AvailableLocalesContext.Provider value={availableLocales}>
 			<ColourContext.Provider value={colourPalette}>
 				<PaletteSetter>
-					<CookieConsent />
+					{/* <CookieConsent /> */}
 					<NavbarComponent />
 					<Component {...pageProps} />
 				</PaletteSetter>
-				{/* <FooterComponent /> */}
+				<FooterComponent />
 			</ColourContext.Provider>
 		</AvailableLocalesContext.Provider>
 	);

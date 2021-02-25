@@ -16,7 +16,10 @@ const HomeAbout = ({ home }) => {
 	});
 
 	return (
-		<section className={styles.section} ref={targetRef}>
+		<section
+			className={`${styles.section} ${isInViewport ? styles.inViewport : ""}`}
+			ref={targetRef}
+		>
 			<Grid>
 				<Grid.Col lg="col-2 / col-12">
 					{home.sobre_title && (

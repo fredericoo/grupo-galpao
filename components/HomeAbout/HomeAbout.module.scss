@@ -10,6 +10,8 @@
 	mix-blend-mode: multiply;
 }
 
-.text {
-	color: var(--colour__main);
+.inViewport {
+	.text {
+		color: var(--colour__main);
+	}
 }

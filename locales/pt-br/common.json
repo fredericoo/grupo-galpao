@@ -1,3 +1,7 @@
 {
-	"agenda": "Agenda de Espetáculos"
+	"agenda": "Agenda de Espetáculos",
+	"footer": "Rodapé",
+	"separator": {
+		"decimals": ","
+	}
 }
