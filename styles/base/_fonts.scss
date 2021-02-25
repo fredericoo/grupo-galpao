@@ -1,0 +1,38 @@
+@font-face {
+	font-family: "gt-america-extended";
+	font-weight: 400;
+	font-style: italic;
+	src: url("/fonts/gt-america/GT-America-Extended-Regular-Italic.woff2")
+			format("woff2"),
+		url("/fonts/gt-america/GT-America-Extended-Regular-Italic.woff")
+			format("woff");
+}
+@font-face {
+	font-family: "gt-america-extended";
+	font-weight: 400;
+	font-style: normal;
+	src: url("/fonts/gt-america/GT-America-Extended-Regular.woff2")
+			format("woff2"),
+		url("/fonts/gt-america/GT-America-Extended-Regular.woff") format("woff");
+}
+@font-face {
+	font-family: "gt-america-extended";
+	font-weight: 700;
+	font-style: normal;
+	src: url("/fonts/gt-america/GT-America-Extended-Bold.woff2") format("woff2"),
+		url("/fonts/gt-america/GT-America-Extended-Bold.woff") format("woff");
+}
+
+@font-face {
+	font-family: "din-pro";
+	src: url("/fonts/din-pro/DINPro-Regular.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "din-pro";
+	src: url("/fonts/din-pro/DINPro-Bold.woff") format("woff");
+	font-weight: bold;
+	font-style: normal;
+}

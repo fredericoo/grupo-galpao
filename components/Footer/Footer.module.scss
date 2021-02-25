@@ -1,0 +1,48 @@
+@import "styles/abstracts/mixins";
+
+.section {
+	margin-top: 2rem;
+	background: var(--colour__secondary);
+}
+
+.column {
+	position: relative;
+	p {
+		margin-bottom: 0.5em;
+	}
+}
+
+.links {
+	p {
+		margin-bottom: 0.5em;
+	}
+	a {
+		border-bottom: 1px solid;
+		@include on-event {
+			text-decoration: none;
+			border-bottom-color: transparent;
+		}
+	}
+}
+
+.logo {
+	max-width: 150px;
+}
+
+.pin {
+	margin-right: 0.5em;
+	@include responsive($tablet-l) {
+		position: absolute;
+		left: -1.2rem;
+		opacity: 0.3;
+		@include on-event {
+			opacity: 1;
+		}
+	}
+}
+
+.time {
+	font-weight: 300;
+	text-transform: uppercase;
+	font-size: 0.9em;
+}

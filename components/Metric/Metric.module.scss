@@ -1,0 +1,17 @@
+.metric {
+	display: grid;
+}
+
+.text {
+	color: var(--colour__main);
+	z-index: 2;
+}
+
+.text,
+.number {
+	text-align: center;
+	justify-self: center;
+	align-self: center;
+	grid-row: 1 / 2;
+	grid-column: 1 / 2;
+}

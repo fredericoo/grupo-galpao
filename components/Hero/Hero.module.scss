@@ -1,0 +1,25 @@
+.hero {
+	color: var(--fg);
+}
+.nav {
+	padding-top: 1rem;
+	& > * {
+		align-self: center;
+	}
+	.previous {
+		justify-self: start;
+	}
+	.next {
+		justify-self: end;
+	}
+	.outof {
+		text-align: center;
+		.current,
+		.total {
+			font-size: 0.6em;
+		}
+		.current {
+			vertical-align: top;
+		}
+	}
+}

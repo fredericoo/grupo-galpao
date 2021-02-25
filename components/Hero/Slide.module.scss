@@ -1,0 +1,42 @@
+@import "styles/abstracts/mixins";
+
+.slide {
+	overflow: hidden;
+	height: calc(90vh - var(--navbar__height));
+}
+
+.header {
+	text-align: center;
+	overflow: hidden;
+	.subtitle {
+		margin-bottom: 0.5em;
+		font-weight: 300;
+	}
+
+	.logo {
+		position: relative;
+		width: 100%;
+		height: 200px;
+	}
+}
+
+.textColumn {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.image {
+	opacity: 0.3;
+	@include responsive($tablet-l) {
+		opacity: 1;
+	}
+	overflow: hidden;
+	height: 100%;
+	width: 100%;
+	figure {
+		height: 100%;
+		width: 100%;
+		position: relative;
+	}
+}
