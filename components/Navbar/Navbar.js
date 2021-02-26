@@ -95,9 +95,9 @@ const Navbar = () => {
 					</ul>
 					<LangPicker />
 					<div className={styles.login}>
-						<Button type="ghost" size="sm" href="/call">
+						{/* <Button type="ghost" size="sm" href="/call">
 							{t("common:menu.courtesyCall")}
-						</Button>
+						</Button> */}
 					</div>
 				</div>
 			</div>
