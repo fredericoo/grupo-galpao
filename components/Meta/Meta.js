@@ -26,8 +26,8 @@ const Meta = ({ pageTitle, pageDesc, pageType, pageImage }) => {
 			<meta property="og:description" content={tabInfo.desc} />
 			<meta name="description" content={tabInfo.desc} />
 
-			<link rel="canonical" href={`https://pbnb.re${asPath}`} />
-			<meta property="og:url" href={`https://pbnb.re${asPath}`} />
+			<link rel="canonical" href={`https://grupogalpao.com.br${asPath}`} />
+			<meta property="og:url" href={`https://grupogalpao.com.br${asPath}`} />
 
 			<meta property="og:image" content={seoImage} />
 
@@ -37,12 +37,12 @@ const Meta = ({ pageTitle, pageDesc, pageType, pageImage }) => {
 			<link rel="manifest" href="/manifest.json" />
 			<meta name="msapplication-config" content="/browserconfig.xml" />
 
-			<meta name="copyright" content="Frederico Batista" />
-			<meta name="designer" content="Penumbra design et web" />
+			<meta name="copyright" content="Penumbra design et Web" />
+			<meta name="designer" content="Frederico Batista" />
 
 			<meta name="robots" content="index,follow" />
 			<meta name="twitter:card" content="summary_large_image" />
-			<meta name="og:email" content="pbnb@pbnb.re" />
+			<meta name="og:email" content="contato@grupogalpao.com.br" />
 
 			{/* WEB APP */}
 			<meta name="apple-mobile-web-app-capable" content="yes" />
