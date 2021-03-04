@@ -5,5 +5,9 @@
 	"footer": "Rodapé",
 	"separator": {
 		"decimals": ","
-	}
+	},
+	"direcao": "Direção",
+	"sinopse": "Sinopse",
+	"ano": "Ano",
+	"fichaTecnica": "Ficha Técnica"
 }

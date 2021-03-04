@@ -1,16 +1,11 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import LangPicker from "components/LangPicker/LangPicker";
 import styles from "./Navbar.module.scss";
 import useTranslation from "next-translate/useTranslation";
-import Button from "components/Button/Button";
 import { useRouter } from "next/router";
 
-import { ColourContext } from "utils/context";
-
 const Navbar = () => {
-	const [colourPalette, setPalette] = useContext(ColourContext);
-
 	const { asPath } = useRouter();
 	const [isOpen, setIsOpen] = useState(false);
 	const toggle = () => setIsOpen(!isOpen);
@@ -20,7 +15,10 @@ const Navbar = () => {
 		setIsOpen(false);
 	}, [asPath]);
 
-	const menu = [{ label: "Repertório", href: "/repertorio" }];
+	const menu = [
+		{ label: "Repertório", href: "/repertorio" },
+		{ label: "Sobre", href: "/sobre" },
+	];
 
 	return (
 		<nav className={`container ${styles.navbar}`}>
