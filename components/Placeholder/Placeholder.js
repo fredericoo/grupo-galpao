@@ -2,17 +2,25 @@ import Image from "next/image";
 import { useState } from "react";
 import styles from "./Placeholder.module.scss";
 
-const Placeholder = (props) => {
+const Placeholder = ({ style, ...props }) => {
 	if (!props || !props.src) return null;
 	const [loaded, setLoaded] = useState(false);
+	const handleLoad = (e) => {
+		if (e.target.src.indexOf("data:image/gif;base64") < 0) {
+			setLoaded(true);
+		}
+	};
 	return (
-		<div className={`${styles.placeholder} ${loaded ? styles.loaded : ""}`}>
+		<div
+			style={style}
+			className={`${styles.placeholder} ${loaded ? styles.loaded : ""}`}
+		>
 			<Image
 				objectFit="cover"
 				className={`${styles.image} ${loaded ? styles.loaded : ""}`}
 				{...props}
 				src={props.src.replace("auto=compress,format", "")}
-				onLoad={() => setLoaded(true)}
+				onLoad={handleLoad}
 				quality={90}
 			/>
 		</div>

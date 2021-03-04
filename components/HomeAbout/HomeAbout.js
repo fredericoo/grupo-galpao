@@ -12,7 +12,7 @@ import { hrefResolver } from "prismic-configuration";
 const HomeAbout = ({ home }) => {
 	const [isInViewport, targetRef] = useColourEffect({
 		bg: "#F5F5F5",
-		fg: "#FFCB05",
+		fg: "#deab1c",
 	});
 
 	return (
@@ -39,7 +39,7 @@ const HomeAbout = ({ home }) => {
 					)}
 				</Grid.Col>
 				<Grid.Col md="col-2 / col-12" lg="col-9 / col-12">
-					<div className={`body ${styles.text}`}>
+					<div className={`body fs-sm ${styles.text}`}>
 						{home.sobre_texto && <Text content={home.sobre_texto} />}
 						{home.sobre_link && (
 							<Button link={hrefResolver(home.sobre_link)} type="ghost">

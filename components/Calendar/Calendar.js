@@ -26,8 +26,8 @@ const Calendar = () => {
 	const { t } = useTranslation();
 
 	const [isInViewport, targetRef] = useColourEffect({
-		bg: "#1B3ECC",
-		fg: "#F5F5F5",
+		bg: "#2e4d83",
+		fg: "#cc9d82",
 	});
 
 	const data = false;

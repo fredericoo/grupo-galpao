@@ -28,8 +28,8 @@ const App = ({ Component, pageProps }) => {
 					{/* <CookieConsent /> */}
 					<NavbarComponent />
 					<Component {...pageProps} />
+					<FooterComponent />
 				</PaletteSetter>
-				<FooterComponent />
 			</ColourContext.Provider>
 		</AvailableLocalesContext.Provider>
 	);

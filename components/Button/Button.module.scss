@@ -200,5 +200,10 @@
 				opacity: 0.2;
 			}
 		}
+		@include on-active {
+			&:before {
+				opacity: 0.5;
+			}
+		}
 	}
 }

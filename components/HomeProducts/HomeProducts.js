@@ -12,12 +12,12 @@ import { hrefResolver } from "prismic-configuration";
 
 const HomeProducts = ({ subtitle, title, text, link, cta }) => {
 	const [isInViewport, targetRef] = useColourEffect({
-		fg: "#141415",
-		bg: "#FFCB05",
+		fg: "#17235f",
+		bg: "#deab1c",
 	});
 
 	return (
-		<section ref={targetRef} className="py-5">
+		<section ref={targetRef} className={`py-5 ${styles.section}`}>
 			<Grid>
 				<Grid.Col lg="col-5 / col-9" className="ta-center">
 					{subtitle && <Text content={subtitle} asText />}

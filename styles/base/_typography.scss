@@ -35,10 +35,11 @@ body {
 		line-height: 1;
 	}
 	&-3 {
-		@extend .fs-lg;
-		@extend .ff-text;
+		@extend .fs-md;
+		@extend .ff-headings;
+		text-transform: uppercase;
 		font-weight: 600; //bold
-		letter-spacing: -0.03em;
+		letter-spacing: 0.03em;
 		line-height: 1.2;
 	}
 	&-4 {
@@ -146,4 +147,36 @@ figcaption {
 			padding-left: 1.25em;
 		}
 	}
+}
+
+.l-2 {
+	opacity: 0.7;
+}
+
+.l-3 {
+	opacity: 0.5;
+}
+
+.bg-fg {
+	background-color: var(--fg);
+}
+
+.bg-bg {
+	background-color: var(--bg);
+}
+
+.bg-main {
+	background-color: var(--colour__main);
+}
+
+.c-fg {
+	color: var(--fg);
+}
+
+.c-bg {
+	color: var(--bg);
+}
+
+.c-main {
+	color: var(--colour__main);
 }

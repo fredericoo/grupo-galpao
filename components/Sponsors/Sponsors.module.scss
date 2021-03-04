@@ -1,0 +1,7 @@
+.sponsors {
+	display: flex;
+	flex-wrap: wrap;
+	& > * {
+		height: calc(2rem + 6vw);
+	}
+}

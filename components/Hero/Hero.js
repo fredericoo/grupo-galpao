@@ -39,7 +39,19 @@ const Hero = ({ banners }) => {
 			<Grid container className={styles.nav}>
 				<Grid.Col className={styles.previous} sm="span 4">
 					<Button onClick={() => changeSlide(slides.previous)} type="ghost">
-						←
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="32"
+							height="32"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							strokeWidth="1.5"
+							strokeLinecap="butt"
+							strokeLinejoin="arcs"
+						>
+							<path d="M19 12H6M12 5l-7 7 7 7" />
+						</svg>
 					</Button>
 				</Grid.Col>
 				<Grid.Col sm="span 4" className={styles.outof}>
@@ -48,7 +60,19 @@ const Hero = ({ banners }) => {
 				</Grid.Col>
 				<Grid.Col className={styles.next} sm="span 4">
 					<Button onClick={() => changeSlide(slides.next)} type="ghost">
-						→
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="32"
+							height="32"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							strokeWidth="1.5"
+							strokeLinecap="butt"
+							strokeLinejoin="arcs"
+						>
+							<path d="M5 12h13M12 5l7 7-7 7" />
+						</svg>
 					</Button>
 				</Grid.Col>
 			</Grid>

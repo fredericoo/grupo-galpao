@@ -33,8 +33,10 @@ const Col = ({
 	rowLg,
 	rowXl,
 	zIndex,
+	style,
 }) => {
-	const style = {
+	const colStyle = {
+		...style,
 		"--colSm": sm,
 		"--colMd": md,
 		"--colLg": lg,
@@ -49,7 +51,7 @@ const Col = ({
 	return (
 		<div
 			className={`${className ? className : ""} ${styles.col}`}
-			style={style}
+			style={colStyle}
 		>
 			{children}
 		</div>
