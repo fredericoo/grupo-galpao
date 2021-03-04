@@ -1,4 +1,5 @@
 import { Client } from "utils/prismicHelpers";
+import Prismic from "prismic-javascript";
 import Meta from "components/Meta/Meta";
 
 const Shows = ({ docs, doc }) => {
