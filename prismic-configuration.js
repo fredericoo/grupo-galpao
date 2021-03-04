@@ -15,7 +15,13 @@ module.exports = {
 		if (doc.type === "homepage") {
 			return `/${doc.lang}`;
 		}
-		return "/";
+		if (doc.link_type === "Web") {
+			return doc.url;
+		}
+		if (doc.url) {
+			return doc.url;
+		}
+		return `/${doc.uid}`;
 	},
 
 	// Additional helper function for Next/Link component
@@ -26,6 +32,12 @@ module.exports = {
 		if (doc.type === "homepage") {
 			return `/${doc.lang}`;
 		}
-		return "/";
+		if (doc.link_type === "Web") {
+			return doc.url;
+		}
+		if (doc.url) {
+			return doc.url;
+		}
+		return `/${doc.uid}`;
 	},
 };

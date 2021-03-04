@@ -15,8 +15,8 @@ const ShowThumb = ({ doc }) => {
 		<Link href={hrefResolver(doc)}>
 			<a className={styles.link}>
 				<Grid subgrid>
-					<Grid.Col md="grid-start / col-7">
-						{data.cover && (
+					<Grid.Col md="grid-start / col-7" className={styles.image}>
+						{data.cover?.url && (
 							<Placeholder
 								src={data.cover.url}
 								width={data.cover.dimensions.width}
@@ -39,12 +39,14 @@ const ShowThumb = ({ doc }) => {
 							</p>
 						)}
 						{data.title && (
-							<h2 className="h-2">
-								<Text content={data.title} asText />
+							<h2 className={`h-2 mb-1 ${styles.title}`}>
+								<span>
+									<Text content={data.title} asText />
+								</span>
 							</h2>
 						)}
 						{data.short && (
-							<div className="body fs-sm">
+							<div className="body fs-sm mb-1">
 								<Text asText content={data.short} />
 							</div>
 						)}

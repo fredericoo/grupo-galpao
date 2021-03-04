@@ -5,6 +5,7 @@ import ColourSection from "components/ColourSection/ColourSection";
 import Grid from "components/Grid/Grid";
 import Text from "components/Text/Text";
 import ShowThumb from "components/ShowThumb/ShowThumb";
+import Flow from "components/Flow/Flow";
 
 const Shows = ({ docs, doc }) => {
 	const page = doc.data;
@@ -18,8 +19,10 @@ const Shows = ({ docs, doc }) => {
 					</h1>
 				</Grid.Col>
 				<Grid.Col>
-					{!!docs.length &&
-						docs.map((doc, key) => <ShowThumb key={key} doc={doc} />)}
+					<Flow spacing="2rem">
+						{!!docs.length &&
+							docs.map((doc, key) => <ShowThumb key={key} doc={doc} />)}
+					</Flow>
 				</Grid.Col>
 			</Grid>
 			<Meta />

@@ -25,32 +25,34 @@
 			top: 100px;
 			order: 3;
 			text-align: right;
-		}
-		&:after {
-			--iconSize: 0.75rem;
-			content: "";
-			position: absolute;
-			display: block;
-			width: var(--iconSize);
-			height: var(--iconSize);
-			background: var(--fg);
-			right: calc(var(--gap, 2rem) * -0.5 + (var(--iconSize) / -2));
-			left: auto;
+			&:after {
+				--iconSize: 0.75rem;
+				content: "";
+				position: absolute;
+				display: block;
+				width: var(--iconSize);
+				height: var(--iconSize);
+				background: var(--fg);
+				right: calc(var(--gap, 2rem) * -0.5 + (var(--iconSize) / -2));
+				left: auto;
 
-			border-radius: 999px;
-			top: 2rem;
+				border-radius: 999px;
+				top: 2rem;
+			}
 		}
+
 		@include responsive($tablet-l) {
 			&:nth-child(even) {
 				margin-top: 25%;
 				margin-bottom: -25%;
-				&:after {
-					right: auto;
-					left: calc(var(--gap, 2rem) * -0.5 + (var(--iconSize) / -2));
-				}
+
 				.img {
 					text-align: left;
 					order: 1;
+					&:after {
+						right: auto;
+						left: calc(var(--gap, 2rem) * -0.5 + (var(--iconSize) / -2));
+					}
 				}
 				grid-template-columns: 1fr 2fr;
 			}

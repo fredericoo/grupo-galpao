@@ -27,7 +27,7 @@ export default function Post({ doc }) {
 						pageImage={data.seo_img.url}
 					/>
 					<Grid className="py-3">
-						<Grid.Col lg="col-5 / col-9">
+						<Grid.Col md="col-4 / col-10" lg="col-5 / col-9">
 							{data.logo?.url ? (
 								<motion.figure
 									key="logo"
@@ -65,8 +65,12 @@ export default function Post({ doc }) {
 								)
 							)}
 						</Grid.Col>
-						{data.cover && (
-							<Grid.Col lg="col-3 / col-11">
+						{data.cover?.url && (
+							<Grid.Col
+								sm="screen-start / screen-end"
+								md="col-2 / col-12"
+								lg="col-3 / col-11"
+							>
 								<Placeholder
 									src={data.cover.url}
 									width={data.cover.dimensions.width}
@@ -78,14 +82,22 @@ export default function Post({ doc }) {
 							</Grid.Col>
 						)}
 						{data.long && (
-							<Grid.Col lg="col-3 / col-8" className="c-fg fs-sm">
+							<Grid.Col
+								md="col-2 / col-12"
+								lg="col-3 / col-8"
+								className="c-fg fs-sm"
+							>
 								<h2 className="h-3">{t("common:sinopse")}</h2>
 								<div className="body">
 									<Text content={data.long} />
 								</div>
 							</Grid.Col>
 						)}
-						<Grid.Col lg="col-9 / col-11" className="c-fg fs-sm">
+						<Grid.Col
+							md="col-2 / col-12"
+							lg="col-9 / col-11"
+							className="c-fg fs-sm"
+						>
 							<Flow spacing="2rem">
 								{groupHasItems(data.activity) && (
 									<dl>

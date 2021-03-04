@@ -23,7 +23,7 @@ const Navbar = () => {
 	return (
 		<nav className={`container ${styles.navbar}`}>
 			<button
-				label={t("common:toggleMenu")}
+				label={t("common:menu")}
 				className={`${styles.toggler}`}
 				type="button"
 				onClick={toggle}

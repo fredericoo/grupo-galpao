@@ -100,6 +100,7 @@
 			opacity: 1;
 		}
 		@include on-event {
+			color: inherit;
 			opacity: 1;
 			text-decoration: none;
 		}
@@ -134,7 +135,7 @@
 }
 
 .logo {
-	height: 2rem;
+	height: 3rem;
 	display: flex;
 	align-self: center;
 	justify-content: center;
@@ -149,7 +150,7 @@
 			}
 		}
 		@include responsive($tablet-l) {
-			transform: translateX(-56%);
+			transform: translateX(-51%);
 		}
 	}
 	a,
