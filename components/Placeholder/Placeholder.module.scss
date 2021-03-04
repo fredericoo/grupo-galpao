@@ -1,12 +1,15 @@
 .placeholder {
 	transition: background-color 1s ease-out;
-	background-color: #f0f0f0;
-}
+	background-color: var(--placeholder_bg);
+	.image {
+		transition: opacity 1s ease-out;
+		opacity: 0;
+	}
 
-.image {
-	transition: opacity 1s ease-out;
-	opacity: 0;
 	&.loaded {
-		opacity: 1;
+		background-color: transparent;
+		.image {
+			opacity: 1;
+		}
 	}
 }

@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useState } from "react";
 import styles from "./Placeholder.module.scss";
 
-const Placeholder = ({ style, ...props }) => {
+const Placeholder = ({ style, bg = "#f0f0f0", ...props }) => {
 	if (!props || !props.src) return null;
 	const [loaded, setLoaded] = useState(false);
 	const handleLoad = (e) => {
@@ -12,12 +12,12 @@ const Placeholder = ({ style, ...props }) => {
 	};
 	return (
 		<div
-			style={style}
+			style={{ ...style, "--placeholder_bg": bg }}
 			className={`${styles.placeholder} ${loaded ? styles.loaded : ""}`}
 		>
 			<Image
 				objectFit="cover"
-				className={`${styles.image} ${loaded ? styles.loaded : ""}`}
+				className={`${styles.image}`}
 				{...props}
 				src={props.src.replace("auto=compress,format", "")}
 				onLoad={handleLoad}

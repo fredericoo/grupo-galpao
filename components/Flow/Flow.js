@@ -10,7 +10,7 @@ const Flow = ({
 	<div
 		style={{ ...style, "--flow__spacing": spacing }}
 		className={`${styles.flow} ${horizontal && styles.horizontal} ${
-			className ? classname : ""
+			className ? className : ""
 		}`}
 	>
 		{children}

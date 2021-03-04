@@ -20,14 +20,7 @@ const Navbar = () => {
 		setIsOpen(false);
 	}, [asPath]);
 
-	const menu = [
-		{ label: "Opção", href: "/material" },
-		{ label: "Opção", href: "/contact" },
-		{ label: "Opção", href: "/contact" },
-		{ label: "Opção", href: "/contact" },
-		{ label: "Opção", href: "/contact" },
-		{ label: "Opção", href: "/contact" },
-	];
+	const menu = [{ label: "Repertório", href: "/repertorio" }];
 
 	return (
 		<nav className={`container ${styles.navbar}`}>

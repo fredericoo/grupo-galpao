@@ -12,6 +12,7 @@ import { AvailableLocalesContext, ColourContext } from "utils/context";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import PaletteSetter from "components/PaletteSetter/PaletteSetter";
+import Background from "components/Background/Background";
 
 const App = ({ Component, pageProps }) => {
 	const { locale } = useRouter();
@@ -25,6 +26,7 @@ const App = ({ Component, pageProps }) => {
 		<AvailableLocalesContext.Provider value={availableLocales}>
 			<ColourContext.Provider value={colourPalette}>
 				<PaletteSetter>
+					<Background />
 					{/* <CookieConsent /> */}
 					<NavbarComponent />
 					<Component {...pageProps} />

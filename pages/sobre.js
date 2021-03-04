@@ -7,7 +7,6 @@ import ColourSection from "components/ColourSection/ColourSection";
 import Text from "components/Text/Text";
 import Placeholder from "components/Placeholder/Placeholder";
 import Metric from "components/Metric/Metric";
-import Background from "components/Background/Background";
 import Timeline from "components/Timeline/Timeline";
 import Prizes from "components/Prizes/Prizes";
 
@@ -16,7 +15,6 @@ const AboutPage = ({ doc }) => {
 
 	return (
 		<>
-			<Background />
 			<Meta
 				pageTitle={data.seo_title}
 				pageDesc={data.seo_desc}

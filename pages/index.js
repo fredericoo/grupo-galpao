@@ -1,4 +1,3 @@
-import Background from "../components/Background/Background";
 import Hero from "../components/Hero/Hero";
 
 import { Client } from "utils/prismicHelpers";
@@ -12,7 +11,7 @@ export default function Home({ doc }) {
 	return (
 		<>
 			<Meta />
-			<Background />
+
 			<Hero banners={doc.data.banners} />
 			<Calendar />
 			<HomeAbout home={doc.data} />
