@@ -1,0 +1,7 @@
+.wrapper {
+	transition: 0.6s var(--easing);
+	transform: translateX(0%);
+	&.navbarOpen {
+		transform: translateX(-10%);
+	}
+}

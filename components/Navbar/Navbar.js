@@ -5,9 +5,8 @@ import styles from "./Navbar.module.scss";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 
-const Navbar = () => {
+const Navbar = ({ history, onBack, isOpen, setIsOpen }) => {
 	const { asPath } = useRouter();
-	const [isOpen, setIsOpen] = useState(false);
 	const toggle = () => setIsOpen(!isOpen);
 	const { t } = useTranslation();
 
@@ -22,16 +21,25 @@ const Navbar = () => {
 
 	return (
 		<nav className={`container ${styles.navbar}`}>
-			<button
-				label={t("common:menu")}
-				className={`${styles.toggler}`}
-				type="button"
-				onClick={toggle}
-			>
-				<div className={`${styles.togglerIcon} ${isOpen ? styles.open : ""}`}>
-					<span></span>
-				</div>
-			</button>
+			{history?.length > 1 && (
+				<Link href={history[1]}>
+					<a onClick={onBack} className={`${styles.backBtn} c-fg`}>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="32"
+							height="32"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							strokeWidth="1.5"
+							strokeLinecap="butt"
+							strokeLinejoin="arcs"
+						>
+							<path d="M19 12H6M12 5l-7 7 7 7" />
+						</svg>
+					</a>
+				</Link>
+			)}
 			<div className={styles.logo}>
 				<Link href="/">
 					<a>
@@ -92,7 +100,16 @@ const Navbar = () => {
 					</div>
 				</div>
 			</div>
-			<div className={`${styles.loginBtn}`} />
+			<button
+				label={t("common:menu")}
+				className={`${styles.toggler}`}
+				type="button"
+				onClick={toggle}
+			>
+				<div className={`${styles.togglerIcon} ${isOpen ? styles.open : ""}`}>
+					<span></span>
+				</div>
+			</button>
 		</nav>
 	);
 };
