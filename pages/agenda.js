@@ -25,7 +25,7 @@ const splitEventDates = (event) =>
 
 const Agenda = () => {
 	const { data: shows } = useSWR("show", fetchAllOfType);
-	const { data: events } = useSWR("events", fetchAllOfType);
+	const { data: events } = useSWR("event", fetchAllOfType);
 
 	const { t } = useTranslation();
 	const [selectedDate, setDate] = useState();
@@ -54,13 +54,12 @@ const Agenda = () => {
 	const handleChange = (e) => e.target && setDate(e.target.value);
 
 	useEffect(() => setDate(moment().format("YYYY-MM-DD")), []);
-	useEffect(
-		() =>
-			shows &&
+	useEffect(() => {
+		shows &&
 			events &&
 			setVisibleEvents(
 				[...shows, ...events]
-					?.map((event) => splitEventDates(event))
+					.map((event) => splitEventDates(event))
 					.flat()
 					.filter(
 						(event) =>
@@ -73,9 +72,8 @@ const Agenda = () => {
 										moment(selectedDate, "YYYY-MM-DD").format("MM YYYY")
 							).length
 					)
-			),
-		[selectedDate, shows, events]
-	);
+			);
+	}, [selectedDate, shows, events]);
 
 	return (
 		<ColourSection bg="#1b3ecc" fg="#f5f5f5">

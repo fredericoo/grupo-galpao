@@ -6,6 +6,7 @@ import HomeAbout from "components/Home/HomeAbout/HomeAbout";
 import HomeProducts from "components/Home/HomeProducts/HomeProducts";
 import Meta from "components/Meta/Meta";
 import HomeEvents from "components/Home/HomeEvents/HomeEvents";
+import HomeInstagram from "components/Home/HomeInstagram/HomeInstagram";
 
 export default function Home({ doc }) {
 	if (!doc) return null;
@@ -16,6 +17,7 @@ export default function Home({ doc }) {
 			<Hero banners={doc.data.banners} />
 			<HomeEvents title={doc.data.events_title} cta={doc.data.events_cta} />
 			<HomeAbout home={doc.data} />
+			<HomeInstagram count={5} />
 			<HomeProducts
 				subtitle={doc.data.souvenirs_subtitle}
 				title={doc.data.souvenirs_title}

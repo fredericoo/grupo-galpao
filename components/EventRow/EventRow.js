@@ -1,4 +1,4 @@
-// import styles from "./EventRow.module.scss";
+import styles from "./EventRow.module.scss";
 
 import { groupHasItems } from "utils/groups";
 import { hrefResolver } from "prismic-configuration";
@@ -13,7 +13,7 @@ export const EventRow = ({ event }) => (
 		{groupHasItems(event.data.dates) &&
 			event.data.dates.map((range, key) => (
 				<Grid key={key} subgrid className="mb-2">
-					<Grid.Col md="span 4" lg="span 2">
+					<Grid.Col md="span 4" className="h-2 ff-condensed ta-lg-right">
 						<DateRange
 							from={range.dates_from}
 							to={range.dates_to}
@@ -23,10 +23,13 @@ export const EventRow = ({ event }) => (
 							]}
 						/>
 					</Grid.Col>
-					<Grid.Col sm="span 8">
+					<Grid.Col md="col-5 / grid-end">
+						<div className="h-5">
+							<Text content={event.data.type || "Espetáculo"} asText />
+						</div>
 						<Link href={hrefResolver(event)}>
-							<a>
-								<h3 className={`h-2 mb-1 ff-condensed`}>
+							<a className={styles.link}>
+								<h3 className={`h-2 mb-1`}>
 									<Text content={event.data.title} asText />
 								</h3>
 							</a>

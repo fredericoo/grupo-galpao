@@ -12,6 +12,8 @@
 	"ano": "Ano",
 	"fichaTecnica": "Ficha Técnica",
 	"proximasDatas": { "singular": "Próxima data", "plural": "Próximas datas" },
+	"curtidas": "curtidas",
+	"comentarios": "comentários",
 	"eventosEm": "Eventos em",
 	"semana": {
 		"dom": "Dom",

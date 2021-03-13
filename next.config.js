@@ -7,7 +7,11 @@ module.exports = {
 		},
 	}),
 	images: {
-		domains: ["images.prismic.io", "galpao.cdn.prismic.io"],
+		domains: [
+			"images.prismic.io",
+			"galpao.cdn.prismic.io",
+			"images.tcdn.com.br",
+		],
 		deviceSizes: [320, 640, 750, 828, 1080, 1200, 1920, 2048],
 	},
 	async headers() {
