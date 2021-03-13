@@ -10,6 +10,24 @@ import Flow from "components/Flow/Flow";
 const Shows = ({ docs, doc }) => {
 	const page = doc.data;
 
+	const sortDocsByLatestDate = (docs) => {
+		const getLatestActivity = (activity) => {
+			const latestActivity = activity.sort(
+				(a, b) =>
+					Math.max(+b.activity_from, +b.activity_to) -
+					Math.max(+a.activity_from, +a.activity_to)
+			)[0];
+			return Math.max(latestActivity.activity_from, latestActivity.activity_to);
+		};
+
+		return docs.sort((a, b) =>
+			!!a.data.activity.length
+				? getLatestActivity(b.data.activity) -
+				  getLatestActivity(a.data.activity)
+				: -1
+		);
+	};
+
 	return (
 		<ColourSection bg="#fafafa" fg="#141415">
 			<Grid className="c-fg py-3">
@@ -19,9 +37,11 @@ const Shows = ({ docs, doc }) => {
 					</h1>
 				</Grid.Col>
 				<Grid.Col>
-					<Flow spacing="2rem">
+					<Flow spacing="4rem">
 						{!!docs.length &&
-							docs.map((doc, key) => <ShowThumb key={key} doc={doc} />)}
+							sortDocsByLatestDate(docs).map((doc, key) => (
+								<ShowThumb key={key} doc={doc} />
+							))}
 					</Flow>
 				</Grid.Col>
 			</Grid>

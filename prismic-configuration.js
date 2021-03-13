@@ -2,7 +2,7 @@ module.exports = {
 	// -- Prismic API endpoint
 	// Determines which repository to query and fetch data from
 	// Configure your site's access point here
-	apiEndpoint: process.env.PRISMIC_API_ENDPOINT,
+	apiEndpoint: "https://galpao.cdn.prismic.io/api/v2",
 	accessToken: process.env.PRISMIC_ACCESS_TOKEN,
 
 	// -- Link resolution rules

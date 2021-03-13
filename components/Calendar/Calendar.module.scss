@@ -15,9 +15,6 @@
 		.date {
 			background: transparent;
 			color: var(--fg);
-			@include on-event {
-				cursor: pointer;
-			}
 			&[data-active-month="false"] {
 				opacity: 0.2;
 			}
@@ -26,7 +23,10 @@
 				text-decoration: underline;
 			}
 			&.marked {
-				border: 1px solid var(--colour__accent);
+				font-weight: bold;
+				span {
+					border-bottom: 2px solid;
+				}
 			}
 			@include on-event {
 				background: var(--colour__secondary);

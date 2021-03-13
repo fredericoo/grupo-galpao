@@ -3,7 +3,7 @@ import Text from "components/Text/Text";
 
 const Metric = ({ text, number }) => (
 	<div className={styles.metric}>
-		<p className={`${styles.text} h-4`}>
+		<p className={`${styles.text} h-3`}>
 			<Text content={text} />
 		</p>
 		<p className={`${styles.number} h-1`}>

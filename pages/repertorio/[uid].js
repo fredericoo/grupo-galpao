@@ -1,6 +1,7 @@
 import { Client } from "utils/prismicHelpers";
 import Prismic from "prismic-javascript";
 import { groupHasItems } from "utils/groups";
+import moment from "moment";
 
 import useTranslation from "next-translate/useTranslation";
 import { motion } from "framer-motion";
@@ -12,12 +13,16 @@ import Grid from "components/Grid/Grid";
 import Columns from "components/Columns/Columns";
 import Placeholder from "components/Placeholder/Placeholder";
 import Flow from "components/Flow/Flow";
+import { formatDateRange } from "components/ShowThumb/utils/dateUtils";
 
 export default function Post({ doc }) {
 	const { t } = useTranslation();
 
 	if (doc && doc.data) {
 		const data = doc.data;
+		const futureDates = data.dates.filter(
+			(range) => !moment(range.dates_to).isBefore()
+		);
 		return (
 			<>
 				<ColourSection bg={data.bg} fg={data.fg}>
@@ -27,7 +32,11 @@ export default function Post({ doc }) {
 						pageImage={data.seo_img.url}
 					/>
 					<Grid className="py-3">
-						<Grid.Col md="col-4 / col-10" lg="col-5 / col-9">
+						<Grid.Col
+							style={{ overflow: "hidden" }}
+							md="col-4 / col-10"
+							lg="col-5 / col-9"
+						>
 							{data.logo?.url ? (
 								<motion.figure
 									key="logo"
@@ -63,6 +72,44 @@ export default function Post({ doc }) {
 										<Text content={data.title} asText />
 									</motion.h1>
 								)
+							)}
+						</Grid.Col>
+						<Grid.Col md="col-2 / col-12" lg="col-3 / col-11" className="c-fg">
+							{groupHasItems(futureDates) && (
+								<dl>
+									<dt className="h-3">
+										{t(
+											`common:proximasDatas${
+												futureDates.length > 1 ? ".plural" : ".singular"
+											}`
+										)}
+									</dt>
+									<Columns sm={1} lg={2}>
+										{futureDates.map((range, key) => (
+											<dd key={key}>
+												<h3 className="h-2">
+													{formatDateRange(range.dates_from, range.dates_to, [
+														(date) => date.format("MMM"),
+														(date) => date.format("DD"),
+													])}
+												</h3>
+												<p>
+													{formatDateRange(range.dates_from, range.dates_to, [
+														(date) => date.format("hh:mm"),
+													])}
+												</p>
+												<div className="fs-xs my-1">
+													<h4 className="h-4">
+														<Text content={range.dates_place} asText />
+													</h4>
+													<address>
+														<Text content={range.dates_address} />
+													</address>
+												</div>
+											</dd>
+										))}
+									</Columns>
+								</dl>
 							)}
 						</Grid.Col>
 						{data.cover?.url && (

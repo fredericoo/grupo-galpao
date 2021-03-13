@@ -48,15 +48,6 @@ const HomeAbout = ({ home }) => {
 						)}
 					</div>
 				</Grid.Col>
-				<Grid.Col md="col-2 / col-12">
-					{home.sobre_numbers && (
-						<Columns sm="1" md="3">
-							{home.sobre_numbers.map((number, key) => (
-								<Metric key={key} text={number.texto} number={number.numero} />
-							))}
-						</Columns>
-					)}
-				</Grid.Col>
 			</Grid>
 		</section>
 	);

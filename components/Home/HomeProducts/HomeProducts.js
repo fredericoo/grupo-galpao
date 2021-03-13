@@ -20,9 +20,13 @@ const HomeProducts = ({ subtitle, title, text, link, cta }) => {
 		<section ref={targetRef} className={`py-5 ${styles.section}`}>
 			<Grid>
 				<Grid.Col lg="col-5 / col-9" className="ta-center">
-					{subtitle && <Text content={subtitle} asText />}
+					{subtitle && (
+						<div className="h-3">
+							<Text content={subtitle} asText />
+						</div>
+					)}
 					{title && (
-						<h2 className="h-2">
+						<h2 className="h-1 ff-condensed">
 							<Text content={title} asText />
 						</h2>
 					)}

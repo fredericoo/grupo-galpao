@@ -17,6 +17,7 @@ const Navbar = ({ history, onBack, isOpen, setIsOpen }) => {
 	const menu = [
 		{ label: "Repertório", href: "/repertorio" },
 		{ label: "Sobre", href: "/sobre" },
+		{ label: "Agenda", href: "/agenda" },
 	];
 
 	return (

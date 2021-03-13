@@ -36,7 +36,6 @@ a {
 	text-decoration: none;
 
 	@include on-event {
-		color: var(--colour__main);
 		text-decoration: underline;
 	}
 }
@@ -65,7 +64,9 @@ p {
 	font-size: inherit;
 	margin: 0;
 }
-
+address {
+	font-style: initial;
+}
 strong,
 b {
 	font-weight: 700;

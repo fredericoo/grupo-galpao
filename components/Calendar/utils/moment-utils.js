@@ -1,7 +1,9 @@
 const moment = require("moment");
 
 export const getSpecificDate = (month, dayOfMonth, year) => {
-	return moment(`${month}-${dayOfMonth}-${year}`, "MM-DD-YYYY").toDate();
+	return moment(`${month}-${dayOfMonth}-${year}`, "MM-DD-YYYY").format(
+		"YYYY-MM-DD"
+	);
 };
 
 const zeroPad = (num, places) => String(num).padStart(places, "0");

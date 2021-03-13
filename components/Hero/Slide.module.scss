@@ -1,13 +1,15 @@
 @import "styles/abstracts/mixins";
 
 .slide {
-	overflow: hidden;
-	height: calc(90vh - var(--navbar__height));
+	height: calc(100vh - var(--navbar__height) - 128px);
+	@include responsive($tablet-p) {
+		height: calc(100vh - var(--navbar__height) - 64px);
+	}
 }
 
 .header {
-	text-align: center;
 	overflow: hidden;
+	text-align: center;
 	.subtitle {
 		margin-bottom: 0.5em;
 		font-weight: 300;
@@ -16,14 +18,26 @@
 	.logo {
 		position: relative;
 		width: 100%;
-		height: 160px;
+		height: calc(64px + 10vw);
 	}
 }
 
 .textColumn {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
+	overflow-y: hidden;
+	position: relative;
+	mask-image: linear-gradient(to top, transparent 0, black 2rem);
+	&::-webkit-scrollbar {
+		display: none;
+	}
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+	& > div {
+		padding-top: 1rem;
+		padding-bottom: 1rem;
+	}
 }
 
 .image {

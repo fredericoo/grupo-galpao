@@ -44,3 +44,14 @@ export const manageLocal = (Locales, locale) => {
 
 	return { mainLanguage, currentLang, isMyMainLanguage };
 };
+
+export async function fetchAllOfType(type) {
+	const client = Client();
+	const docs = await client.query(
+		Prismic.Predicates.at("document.type", type),
+		{
+			fetchLinks: ["membro.nome", "membro.img", "membro.position"],
+		}
+	);
+	return docs.results;
+}

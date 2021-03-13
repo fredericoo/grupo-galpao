@@ -1,4 +1,4 @@
-const weekdays = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
+const weekdays = ["dom", "seg", "ter", "qua", "qui", "sex", "sab"];
 
 const monthsFull = [
 	"Janeiro",
