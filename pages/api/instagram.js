@@ -1,13 +1,10 @@
 import moment from "moment";
 
-async function instagram(req, res) {
+async function instagram(_, res) {
 	const timestamp = moment().format();
 
 	const reqHeaders = new Headers();
-	reqHeaders.append(
-		"x-rapidapi-key",
-		"6cc959f01bmsh1facf1fbafa20ecp10f43cjsn630c0497a52e"
-	);
+	reqHeaders.append("x-rapidapi-key", process.env.RAPIDAPI_KEY);
 	reqHeaders.append("x-rapidapi-host", "instagram28.p.rapidapi.com");
 
 	const requestOptions = {

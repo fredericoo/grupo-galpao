@@ -18,6 +18,7 @@ const Navbar = ({ history, onBack, isOpen, setIsOpen }) => {
 		{ label: "Repertório", href: "/repertorio" },
 		{ label: "Sobre", href: "/sobre" },
 		{ label: "Agenda", href: "/agenda" },
+		{ label: "Loja", href: "https://www.lojagrupogalpao.com.br/" },
 	];
 
 	return (

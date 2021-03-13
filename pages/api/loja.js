@@ -23,12 +23,8 @@ export default async function loja(req, res) {
 	const url = "https://www.lojagrupogalpao.com.br/lancamentos";
 	const products = await rp(url)
 		.then((html) => {
-			// const decoded = iconv.decode(html, "UTF-8");
-			// const encoded = iconv.encode(decoded, "ISO-8859-1").toString();
-			// const getImageFromNode = (child) =>
-			// 	$(".product-image img", child).length
-			// 		? $(".product-image img", child)[0].attribs["data-original"]
-			// 		: "";
+			// const decoded = iconv.decode(html, "ISO-8859-1");
+			// const encoded = iconv.encode(decoded, "UTF-8").toString();
 
 			const getUrlFromNode = (child) =>
 				!!$("a", child).length ? $("a", child)[0].attribs["href"] : "";
