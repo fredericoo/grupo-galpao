@@ -25,15 +25,10 @@
 .textColumn {
 	display: flex;
 	flex-direction: column;
+	align-self: center;
 	justify-content: flex-start;
 	overflow-y: hidden;
 	position: relative;
-	mask-image: linear-gradient(to top, transparent 0, black 2rem);
-	&::-webkit-scrollbar {
-		display: none;
-	}
-	-ms-overflow-style: none; /* IE and Edge */
-	scrollbar-width: none; /* Firefox */
 	& > div {
 		padding-top: 1rem;
 		padding-bottom: 1rem;

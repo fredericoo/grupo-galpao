@@ -62,6 +62,7 @@ const Slide = ({ content }) => {
 												src={content.logo.url}
 												alt={content.logo.alt}
 												layout="fill"
+												quality={100}
 												objectFit="contain"
 											/>
 										</motion.figure>
@@ -82,8 +83,14 @@ const Slide = ({ content }) => {
 										)
 									)}
 								</header>
-								<Columns sm={1} lg={2}>
-									<div className={`${styles.textBlock} body fs-sm`}>
+								<Columns
+									sm={1}
+									lg={!!content.text2?.length && !!content.text?.length ? 2 : 1}
+								>
+									<div
+										className={`${styles.textBlock} body fs-sm 
+										${!content.text2?.length && !!content.text?.length ? "ta-center" : ""}`}
+									>
 										{content.text && <Text content={content.text} />}
 										{!content.text2?.length && content.link && content.cta && (
 											<Button href={hrefResolver(content.link)} type="ghost">
