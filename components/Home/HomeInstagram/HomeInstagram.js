@@ -28,8 +28,9 @@ export const HomeInstagram = ({ count = 3 }) => {
 			<Grid className="py-5">
 				<Grid.Col>
 					<Columns sm={2} lg={count}>
-						{posts.slice(0, count).map((post) => (
+						{posts.slice(0, count).map((post, key) => (
 							<Post
+								key={key}
 								imageSrc={post.node?.display_url}
 								commentCount={post.node?.edge_media_to_comment.count}
 								likeCount={post.node?.edge_media_preview_like.count}
