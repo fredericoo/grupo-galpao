@@ -1,8 +1,7 @@
-const rp = require("request-promise");
-
 async function getImageUrl(destaque) {
 	const cheerio = require("cheerio");
-	return await rp(destaque.url)
+	return await fetch(destaque.url)
+		.then((res) => res.text())
 		.then((html) => {
 			const $ = cheerio.load(html, { decodeEntities: false });
 			return {
@@ -16,16 +15,16 @@ async function getImageUrl(destaque) {
 }
 
 export default async function loja(req, res) {
-	// const iconv = require("iconv-lite");
-
+	const iconv = require("iconv-lite");
 	const cheerio = require("cheerio");
 
 	const url = "https://www.lojagrupogalpao.com.br/lancamentos";
-	const products = await rp(url)
+	const products = await fetch(url)
+		.then((res) => res.arrayBuffer())
+		.then((arrayBuffer) =>
+			iconv.decode(new Buffer(arrayBuffer), "ISO-8859-1").toString()
+		)
 		.then((html) => {
-			// const decoded = iconv.decode(html, "ISO-8859-1");
-			// const encoded = iconv.encode(decoded, "UTF-8").toString();
-
 			const getUrlFromNode = (child) =>
 				!!$("a", child).length ? $("a", child)[0].attribs["href"] : "";
 
