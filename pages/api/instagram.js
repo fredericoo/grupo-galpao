@@ -14,16 +14,15 @@ async function instagram(_, res) {
 	};
 
 	await fetch(
-		"https://instagram28.p.rapidapi.com/medias?user_id=146277005&next_cursor=QVFDQjY1YkdMY0x0YTFEdWo4R21CNFVuMUV0WmpIdUdlWVNTaXY4VXlVdkYyZEhJT2tBay1aRDN4OWpUMFZHbG1KNmpiMnQ2Z09FVjFhWHUxTDBfNDh5Yg==&batch_size=20",
+		"https://instagram28.p.rapidapi.com/medias?user_id=146277005&batch_size=5",
 		requestOptions
 	)
 		.then((response) => response.json())
 		.then((data) => {
-			res.setHeader("Cache-Control", "s-maxage=86400, stale-while-revalidate");
+			res.setHeader("Cache-Control", "s-maxage=43200, stale-while-revalidate");
 			res.json({ timestamp, posts: data });
 		})
 		.catch((err) => {
-			res.setHeader("Cache-Control", "s-maxage=60, stale-while-revalidate");
 			res.json({ err });
 		});
 }
