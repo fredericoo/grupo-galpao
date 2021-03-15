@@ -1,11 +1,12 @@
 import styles from "./HomeInstagram.module.scss";
 
 import { useState, useEffect } from "react";
+import useTranslation from "next-translate/useTranslation";
+
 import Grid from "components/Grid/Grid";
 import Columns from "components/Columns/Columns";
 import Placeholder from "components/Placeholder/Placeholder";
 import ColourSection from "components/ColourSection/ColourSection";
-import useTranslation from "next-translate/useTranslation";
 
 export const HomeInstagram = ({ count = 3 }) => {
 	const [posts, setPosts] = useState(Array(count).fill({}));
@@ -25,8 +26,9 @@ export const HomeInstagram = ({ count = 3 }) => {
 
 	return (
 		<ColourSection fg="#f5f5f5" bg="#141415">
-			<Grid className="py-5">
+			<Grid className="py-5 c-fg">
 				<Grid.Col>
+					<h2 className="h-2 mb-2">O Galpão na internet</h2>
 					<Columns sm={2} lg={count}>
 						{posts.slice(0, count).map((post, key) => (
 							<Post
@@ -67,7 +69,15 @@ const Post = ({
 		<LinkWrapper link={link}>
 			<figure className={`${styles.post} ${isSkeleton ? styles.skeleton : ""}`}>
 				<div className={styles.image} style={{ "--ratio": height / width }}>
-					{imageSrc && <img src={imageSrc} />}
+					{imageSrc && (
+						<Placeholder
+							width="1080"
+							height="1080"
+							src={imageSrc}
+							unoptimized
+							layout="responsive"
+						/>
+					)}
 				</div>
 				<div className={styles.info}>
 					<span>

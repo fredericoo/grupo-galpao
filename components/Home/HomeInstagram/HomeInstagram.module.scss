@@ -9,7 +9,7 @@
 		background-color: #f0f0f0;
 		padding-bottom: 100%;
 		transition: background-color 0.6s var(--easing);
-		img {
+		& > * {
 			position: absolute;
 			top: 0;
 			left: 0;
@@ -38,8 +38,8 @@
 	@include on-event {
 		.image {
 			background-color: var(--fg);
-			img {
-				opacity: 0.3;
+			& > * {
+				opacity: 0.1;
 			}
 		}
 		.info {
