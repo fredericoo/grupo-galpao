@@ -22,7 +22,7 @@ const Navbar = ({ history, onBack, isOpen, setIsOpen }) => {
 	];
 
 	return (
-		<nav className={`container ${styles.navbar}`}>
+		<nav className={`container ${styles.navbar} bg-bg`}>
 			{history?.length > 1 && (
 				<Link href={history[1]}>
 					<a onClick={onBack} className={`${styles.backBtn} c-fg`}>

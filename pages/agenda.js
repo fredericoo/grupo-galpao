@@ -12,6 +12,7 @@ import Grid from "components/Grid/Grid";
 import Text from "components/Text/Text";
 import EventRow from "components/EventRow/EventRow";
 import Calendar from "components/Calendar/Calendar";
+import Loader from "components/Loader/Loader";
 import useSWR from "swr";
 
 const splitEventDates = (event) =>
@@ -24,8 +25,8 @@ const splitEventDates = (event) =>
 	}));
 
 const Agenda = () => {
-	const { data: shows } = useSWR("show", fetchAllOfType);
-	const { data: events } = useSWR("event", fetchAllOfType);
+	const { data: shows, error: errorShows } = useSWR("show", fetchAllOfType);
+	const { data: events, error: errorEvents } = useSWR("event", fetchAllOfType);
 
 	const { t } = useTranslation();
 	const [selectedDate, setDate] = useState();
@@ -100,9 +101,14 @@ const Agenda = () => {
 						{t("common:eventosEm")}{" "}
 						{moment(selectedDate, "YYYY-MM-DD").format("MMMM")}
 					</h2>
-					{visibleEvents.map((event, key) => (
-						<EventRow key={key} event={event} />
-					))}
+
+					{!errorEvents && !events && !errorShows && !shows ? (
+						<Loader />
+					) : (
+						visibleEvents.map((event, key) => (
+							<EventRow key={key} event={event} />
+						))
+					)}
 				</Grid.Col>
 			</Grid>
 		</ColourSection>

@@ -1,0 +1,21 @@
+.wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	svg {
+		height: 4rem;
+		width: 4rem;
+		fill: var(--fg);
+		animation: spinning 2s infinite;
+	}
+}
+
+@keyframes spinning {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}

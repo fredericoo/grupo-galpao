@@ -12,6 +12,7 @@ import EventRow from "components/EventRow/EventRow";
 import { groupHasItems } from "utils/groups";
 import Text from "components/Text/Text";
 import Button from "components/Button/Button";
+import Loader from "components/Loader/Loader";
 
 const getFutureFrom = (events) =>
 	events.filter(
@@ -22,8 +23,8 @@ const getFutureFrom = (events) =>
 	);
 
 const HomeEvents = ({ title, cta }) => {
-	const { data: shows } = useSWR("show", fetchAllOfType);
-	const { data: events } = useSWR("events", fetchAllOfType);
+	const { data: shows, error: errorShows } = useSWR("show", fetchAllOfType);
+	const { data: events, error: errorEvents } = useSWR("event", fetchAllOfType);
 
 	const [futureEvents, setFutureEvents] = useState([]);
 
@@ -41,13 +42,19 @@ const HomeEvents = ({ title, cta }) => {
 				</Grid.Col>
 				<Grid.Col lg="col-5 / grid-end" xl="col-7 / grid-end" className="c-fg">
 					<div className="mb-4">
-						{futureEvents.slice(0, 3).map((event, key) => (
-							<EventRow key={key} event={event} />
-						))}
+						{!errorEvents && !events && !errorShows && !shows ? (
+							<Loader />
+						) : (
+							futureEvents
+								.slice(0, 3)
+								.map((event, key) => <EventRow key={key} event={event} />)
+						)}
 					</div>
-					<Button type="ghost" href="/agenda">
-						<Text content={cta} asText />
-					</Button>
+					<div className="ta-center">
+						<Button type="ghost" href="/agenda">
+							<Text content={cta} asText />
+						</Button>
+					</div>
 				</Grid.Col>
 			</Grid>
 		</ColourSection>

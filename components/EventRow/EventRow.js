@@ -13,7 +13,7 @@ export const EventRow = ({ event }) => (
 		{groupHasItems(event.data.dates) &&
 			event.data.dates.map((range, key) => (
 				<Grid key={key} subgrid className="mb-2">
-					<Grid.Col md="span 4" className="h-2 ff-condensed ta-lg-right">
+					<Grid.Col sm="span 4" className="h-2 ff-condensed ta-lg-right">
 						<DateRange
 							from={range.dates_from}
 							to={range.dates_to}
@@ -23,7 +23,7 @@ export const EventRow = ({ event }) => (
 							]}
 						/>
 					</Grid.Col>
-					<Grid.Col md="col-5 / grid-end">
+					<Grid.Col sm="col-5 / grid-end">
 						<div className="h-5">
 							<Text content={event.data.type || "Espetáculo"} asText />
 						</div>
