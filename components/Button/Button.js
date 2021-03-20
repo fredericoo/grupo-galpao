@@ -1,14 +1,26 @@
 import Link from "next/link";
 import styles from "./Button.module.scss";
 
-const Button = ({ children, href, onClick, type = "primary", size = "md" }) => {
+const Button = ({
+	children,
+	href,
+	onClick,
+	type = "primary",
+	size = "md",
+	disabled = false,
+}) => {
 	const buttonClass = `${styles.button} ${
 		type ? styles[`type--${type}`] : ""
-	} ${size ? styles[`size--${size}`] : ""}`;
+	} ${size ? styles[`size--${size}`] : ""}
+	${disabled ? styles.disabled : ""}`;
 
 	if (!href)
 		return (
-			<button onClick={onClick} type="button" className={buttonClass}>
+			<button
+				onClick={disabled ? () => {} : onClick}
+				type="button"
+				className={buttonClass}
+			>
 				{children}
 			</button>
 		);
