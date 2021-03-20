@@ -22,23 +22,21 @@ const Hero = ({ banners }) => {
 		next: slide + 1 >= banners.length ? 0 : slide + 1,
 	};
 
-	// useEffect(() => changeSlide(slide), []);
-
 	const changeSlide = (slideNo) => {
 		const current = banners[slideNo];
-		isInViewport &&
-			setPalette({
-				colourPalette,
-				bg: current.bg || "var(--colour__bg)",
-				fg: current.fg || "var(--colour__main)",
-			});
+		setPalette({
+			colourPalette,
+			bg: current.bg || "var(--colour__bg)",
+			fg: current.fg || "var(--colour__main)",
+		});
 		setSlide(slideNo);
 	};
 
 	useEffect(() => {
 		clearTimeout(interval.current);
-		if (!interacted) {
-			interval.current = setTimeout(() => changeSlide(slides.next), 6000);
+		if (!interacted && isInViewport) {
+			const nextSlide = () => changeSlide(slides.next);
+			interval.current = setTimeout(() => nextSlide(), 6000);
 		}
 		return () => clearTimeout(interval.current);
 	}, [interacted, slide]);
@@ -53,6 +51,7 @@ const Hero = ({ banners }) => {
 			<Grid container className={styles.nav}>
 				<Grid.Col className={styles.previous} sm="span 4">
 					<Button
+						disabled={!isInViewport}
 						onClick={() => (changeSlide(slides.previous), setInteracted(true))}
 						type="ghost"
 					>
@@ -79,6 +78,7 @@ const Hero = ({ banners }) => {
 					<Button
 						onClick={() => (changeSlide(slides.next), setInteracted(true))}
 						type="ghost"
+						disabled={!isInViewport}
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"

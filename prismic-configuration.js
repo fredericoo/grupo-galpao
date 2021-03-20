@@ -12,6 +12,12 @@ module.exports = {
 		if (doc.type === "show") {
 			return `/${doc.lang}/repertorio/${doc.uid}`;
 		}
+		if (doc.type === "member") {
+			return `/${doc.lang}/elenco/${doc.uid}`;
+		}
+		if (doc.type === "event") {
+			return `/${doc.lang}/agenda/${doc.uid}`;
+		}
 		if (doc.type === "homepage") {
 			return `/${doc.lang}`;
 		}
@@ -28,6 +34,12 @@ module.exports = {
 	hrefResolver: function (doc) {
 		if (doc.type === "show") {
 			return `/${doc.lang}/repertorio/${doc.uid}`;
+		}
+		if (doc.type === "member") {
+			return `/${doc.lang}/elenco/${doc.uid}`;
+		}
+		if (doc.type === "event") {
+			return `/${doc.lang}/agenda/${doc.uid}`;
 		}
 		if (doc.type === "homepage") {
 			return `/${doc.lang}`;

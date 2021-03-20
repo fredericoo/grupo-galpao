@@ -3,9 +3,13 @@
 .link {
 	h3 {
 		display: inline-block;
-		border-bottom: 0.1em solid transparent;
+		span {
+			border-bottom: 0.1em solid transparent;
+		}
 		@include on-event {
-			border-bottom-color: currentColor;
+			span {
+				border-bottom-color: currentColor;
+			}
 		}
 	}
 }

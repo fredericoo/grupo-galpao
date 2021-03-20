@@ -1,3 +1,5 @@
+import { Client } from "utils/prismicHelpers";
+
 import { useState, useEffect, useMemo } from "react";
 import useTranslation from "next-translate/useTranslation";
 
@@ -6,7 +8,7 @@ import { groupHasItems } from "utils/groups";
 import moment from "moment";
 
 import Meta from "components/Meta/Meta";
-
+import { RichText } from "prismic-reactjs";
 import ColourSection from "components/ColourSection/ColourSection";
 import Grid from "components/Grid/Grid";
 import Text from "components/Text/Text";
@@ -24,7 +26,7 @@ const splitEventDates = (event) =>
 		},
 	}));
 
-const Agenda = () => {
+const Agenda = ({ doc }) => {
 	const { data: shows, error: errorShows } = useSWR("show", fetchAllOfType);
 	const { data: events, error: errorEvents } = useSWR("event", fetchAllOfType);
 
@@ -78,13 +80,18 @@ const Agenda = () => {
 
 	return (
 		<ColourSection bg="#1b3ecc" fg="#f5f5f5">
-			<Meta />
 			<Grid className="c-fg py-3">
-				<Grid.Col>
-					<h1 className="h-1">
-						<Text content="Agenda" asText />
-					</h1>
-				</Grid.Col>
+				{doc && (
+					<Grid.Col className="ta-center mb-3">
+						<Meta
+							pageTitle={doc.data.seo_title || RichText.asText(doc.data.title)}
+							pageDesc={doc.data.seo_desc}
+						/>
+						<h1 className="h-1">
+							{doc?.data && <Text content={doc.data.title} asText />}
+						</h1>
+					</Grid.Col>
+				)}
 				<Grid.Col
 					className="mb-4"
 					lg="grid-start / col-7"
@@ -114,5 +121,22 @@ const Agenda = () => {
 		</ColourSection>
 	);
 };
+
+export async function getStaticProps({ locale }) {
+	const client = Client();
+	const doc = await client.getSingle("agenda", {
+		lang: locale,
+	});
+
+	if (doc) {
+		return {
+			revalidate: 60,
+			props: {
+				doc: doc || {},
+			},
+		};
+	}
+	return { revalidate: 60, props: { doc: {} } };
+}
 
 export default Agenda;

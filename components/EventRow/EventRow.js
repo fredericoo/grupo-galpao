@@ -29,8 +29,10 @@ export const EventRow = ({ event }) => (
 						</div>
 						<Link href={hrefResolver(event)}>
 							<a className={styles.link}>
-								<h3 className={`h-2 mb-1`}>
-									<Text content={event.data.title} asText />
+								<h3 className={`h-2 mb-2`}>
+									<span className="">
+										<Text content={event.data.title} asText />
+									</span>
 								</h3>
 							</a>
 						</Link>

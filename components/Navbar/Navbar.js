@@ -1,9 +1,15 @@
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import LangPicker from "components/LangPicker/LangPicker";
 import styles from "./Navbar.module.scss";
+
+import { useState, useEffect } from "react";
+import { hrefResolver } from "prismic-configuration";
+import { Client } from "utils/prismicHelpers";
+import useSWR from "swr";
+
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
+import Link from "next/link";
+
+import LangPicker from "components/LangPicker/LangPicker";
 
 const Navbar = ({ parent, isOpen, setIsOpen }) => {
 	const { asPath } = useRouter();
@@ -14,12 +20,15 @@ const Navbar = ({ parent, isOpen, setIsOpen }) => {
 		setIsOpen(false);
 	}, [asPath]);
 
-	const menu = [
-		{ label: "Repertório", href: "/repertorio" },
-		{ label: "Sobre", href: "/sobre" },
-		{ label: "Agenda", href: "/agenda" },
-		{ label: "Loja", href: "https://www.lojagrupogalpao.com.br/" },
-	];
+	const { locale } = useRouter();
+	async function fetcher(uid) {
+		const client = Client();
+		const doc = await client.getSingle(uid, {
+			lang: locale,
+		});
+		return doc.data.menu;
+	}
+	const { data: menu, error } = useSWR("config", fetcher);
 
 	return (
 		<nav className={`${styles.navbar} bg-bg`}>
@@ -82,38 +91,40 @@ const Navbar = ({ parent, isOpen, setIsOpen }) => {
 			>
 				<div className={`${styles.tools} ${isOpen ? styles.open : ""}`}>
 					<ul className={styles.menu}>
-						{menu.map(({ label, href }) => (
-							<li key={label}>
-								<Link href={href}>
-									<a
-										className={` ${styles.item} ${
-											asPath === href ? styles.active : ""
-										}`}
-									>
-										{label}
-									</a>
-								</Link>
-							</li>
-						))}
+						{menu &&
+							menu.map((option) => {
+								const href = hrefResolver(option.link);
+								return (
+									<li key={option.label}>
+										<Link href={href}>
+											<a
+												target={option.link.target}
+												className={`h-2 ${styles.item} ${
+													asPath === href ? styles.active : ""
+												}`}
+											>
+												<span>{option.label}</span>
+											</a>
+										</Link>
+									</li>
+								);
+							})}
 					</ul>
 					<LangPicker />
-					<div className={styles.login}>
-						{/* <Button type="ghost" size="sm" href="/call">
-							{t("common:menu.courtesyCall")}
-						</Button> */}
-					</div>
 				</div>
 			</div>
-			<button
-				label={t("common:menu")}
-				className={`${styles.toggler}`}
-				type="button"
-				onClick={toggle}
-			>
-				<div className={`${styles.togglerIcon} ${isOpen ? styles.open : ""}`}>
-					<span></span>
-				</div>
-			</button>
+			{menu && !error && (
+				<button
+					label={t("common:menu")}
+					className={`${styles.toggler}`}
+					type="button"
+					onClick={toggle}
+				>
+					<div className={`${styles.togglerIcon} ${isOpen ? styles.open : ""}`}>
+						<span></span>
+					</div>
+				</button>
+			)}
 		</nav>
 	);
 };

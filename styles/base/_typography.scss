@@ -93,8 +93,6 @@ body {
 	}
 }
 
-.ta-right {
-}
 @include responsive($tablet-l) {
 	.ta-lg-right {
 		text-align: right;

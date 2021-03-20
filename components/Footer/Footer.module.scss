@@ -6,5 +6,19 @@
 }
 
 .star {
+	align-self: end;
 	mix-blend-mode: multiply;
+}
+
+.brandGroup {
+	display: block;
+	margin-bottom: 2rem;
+	ul {
+		display: flex;
+		li {
+			height: 6rem;
+			width: 100%;
+			position: relative;
+		}
+	}
 }

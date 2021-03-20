@@ -13,7 +13,6 @@ export default function Home({ doc }) {
 	return (
 		<>
 			<Meta />
-
 			<Hero banners={doc.data.banners} />
 			<HomeEvents title={doc.data.events_title} cta={doc.data.events_cta} />
 			<HomeAbout home={doc.data} />

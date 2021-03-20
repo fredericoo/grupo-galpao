@@ -1,7 +1,8 @@
 import { Client } from "utils/prismicHelpers";
 import Prismic from "prismic-javascript";
-import { groupHasItems } from "utils/groups";
+import { hrefResolver } from "prismic-configuration";
 import { RichText } from "prismic-reactjs";
+import { groupHasItems } from "utils/groups";
 
 import useTranslation from "next-translate/useTranslation";
 import { motion } from "framer-motion";
@@ -14,6 +15,7 @@ import Columns from "components/Columns/Columns";
 import Placeholder from "components/Placeholder/Placeholder";
 import Flow from "components/Flow/Flow";
 import FutureDates from "components/FutureDates/FutureDates";
+import Button from "components/Button/Button";
 
 export default function Post({ doc }) {
 	const { t } = useTranslation();
@@ -28,15 +30,14 @@ export default function Post({ doc }) {
 						pageDesc={data.seo_desc || RichText.asText(data.short)}
 						pageImage={data.seo_img?.url || data.cover?.url}
 					/>
-					<Grid className="py-3">
+					<Grid className="py-3 c-fg">
 						<Grid.Col
 							style={{ overflow: "hidden" }}
 							md="col-4 / col-10"
-							lg="col-5 / col-9"
+							lg="col-3 / col-11"
 						>
-							{data.logo?.url ? (
-								<motion.figure
-									key="logo"
+							{data.title && (
+								<motion.div
 									initial={{ translateY: "100%" }}
 									animate={{ translateY: "0%" }}
 									transition={{
@@ -45,30 +46,20 @@ export default function Post({ doc }) {
 										damping: 50,
 									}}
 								>
-									<Placeholder
-										src={data.logo.url}
-										alt={data.logo.alt}
-										width={data.logo.dimensions.width}
-										height={data.logo.dimensions.height}
-										layout="responsive"
-										bg="transparent"
-									/>
-								</motion.figure>
-							) : (
-								data.title && (
-									<motion.h1
-										initial={{ translateY: "100%" }}
-										animate={{ translateY: "0%" }}
-										transition={{
-											type: "spring",
-											stiffness: 300,
-											damping: 50,
-										}}
-										className={`h-2`}
-									>
+									{data.type && (
+										<p className="h-3">
+											<Text content={data.type} asText />
+										</p>
+									)}
+									<h1 className={`h-2`}>
 										<Text content={data.title} asText />
-									</motion.h1>
-								)
+									</h1>
+									{data.subtitle && (
+										<p className="h-4">
+											<Text content={data.subtitle} asText />
+										</p>
+									)}
+								</motion.div>
 							)}
 						</Grid.Col>
 
@@ -96,7 +87,6 @@ export default function Post({ doc }) {
 								lg="col-3 / col-8"
 								className="c-fg fs-sm"
 							>
-								<h2 className="h-3">{t("common:sinopse")}</h2>
 								<div className="body">
 									<Text content={data.long} />
 								</div>
@@ -108,28 +98,16 @@ export default function Post({ doc }) {
 							className="c-fg fs-sm"
 						>
 							<Flow spacing="2rem">
-								{groupHasItems(data.activity) && (
-									<dl>
-										<dt className="h-3">{t("common:ano")}</dt>
-										{data.activity.map((entry, key) => (
-											<dd key={key}>
-												{entry.activity_from}
-												{entry.activity_to && ` — ${entry.activity_to}`}
-											</dd>
-										))}
-									</dl>
-								)}
-								{groupHasItems(data.directors) && (
-									<dl>
-										<dt className="h-3">{t("common:direcao")}</dt>
-										<dd>
-											<Text
-												content={data.directors
-													.map((director) => director.directors_name)
-													.join(", ")}
-											/>
-										</dd>
-									</dl>
+								{data.link && (
+									<Button
+										size="lg"
+										className="ta-center"
+										type="primary"
+										target={data.link.target}
+										href={hrefResolver(data.link)}
+									>
+										<Text asText content={data.cta} />
+									</Button>
 								)}
 								{groupHasItems(data.info) &&
 									data.info.map((entry, key) => (
@@ -178,7 +156,7 @@ export default function Post({ doc }) {
 export async function getStaticPaths() {
 	const client = Client();
 	const documents = await client.query([
-		Prismic.Predicates.at("document.type", "show"),
+		Prismic.Predicates.at("document.type", "event"),
 	]);
 
 	return {
@@ -194,9 +172,8 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params, locale }) {
 	const client = Client();
-	const doc = await client.getByUID("show", params.uid, {
+	const doc = await client.getByUID("event", params.uid, {
 		lang: locale,
-		fetchLinks: ["member.title", "member.position", "member.img"],
 	});
 
 	if (doc) {

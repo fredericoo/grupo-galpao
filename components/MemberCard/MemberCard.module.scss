@@ -1,0 +1,32 @@
+@import "styles/abstracts/mixins";
+
+.wrapper {
+	.position {
+		font-weight: normal;
+	}
+	.image {
+		& > * {
+			transition: transform 1.2s var(--easing);
+			transform: scale(1.1);
+		}
+		overflow: hidden;
+	}
+	h3 {
+		span {
+			border-bottom: 0.1em solid transparent;
+		}
+	}
+	@include on-event {
+		text-decoration: none;
+		h3 {
+			span {
+				border-bottom-color: currentColor;
+			}
+		}
+		.image {
+			& > * {
+				transform: scale(1);
+			}
+		}
+	}
+}

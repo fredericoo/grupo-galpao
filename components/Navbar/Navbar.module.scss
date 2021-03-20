@@ -7,7 +7,6 @@
 	display: flex;
 	max-width: 100vw;
 	transition: 0.3s background-color ease-out;
-	margin: 0 max(var(--gutter), calc(var(--sidebearing) + var(--gutter)));
 }
 
 .toggler,
@@ -103,14 +102,19 @@
 	font-size: 1.5rem;
 	.item {
 		display: block;
-		opacity: 0.5;
-		padding: 0.618rem 1rem;
+		opacity: 1;
+		padding: 0.3em 0;
+		span {
+			border-bottom: 0.15em solid transparent;
+		}
 		&.active {
-			opacity: 1;
+			span {
+				border-bottom-color: currentColor;
+			}
 		}
 		@include on-event {
 			color: inherit;
-			opacity: 1;
+			opacity: 0.5;
 			text-decoration: none;
 		}
 	}

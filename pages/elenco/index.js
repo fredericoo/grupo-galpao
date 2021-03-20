@@ -1,11 +1,14 @@
 import { Client } from "utils/prismicHelpers";
 import Prismic from "prismic-javascript";
+import { hrefResolver } from "prismic-configuration";
+
+import { RichText } from "prismic-reactjs";
 import Meta from "components/Meta/Meta";
 import ColourSection from "components/ColourSection/ColourSection";
 import Grid from "components/Grid/Grid";
 import Text from "components/Text/Text";
-import ShowThumb from "components/ShowThumb/ShowThumb";
-import Flow from "components/Flow/Flow";
+import Columns from "components/Columns/Columns";
+import MemberCard from "components/MemberCard/MemberCard";
 
 const Shows = ({ docs, doc }) => {
 	const page = doc.data;
@@ -29,24 +32,30 @@ const Shows = ({ docs, doc }) => {
 	};
 
 	return (
-		<ColourSection bg="#fafafa" fg="#141415">
+		<ColourSection bg="#141415" fg="#fafafa">
+			<Meta
+				pageTitle={page.seo_title || RichText.asText(page.title)}
+				pageDesc={page.seo_desc}
+			/>
 			<Grid className="c-fg py-3">
-				<Grid.Col className="ta-center mb-3">
-					<Meta
-						pageTitle={page.seo_title || RichText.asText(page.title)}
-						pageDesc={page.seo_desc}
-					/>
+				<Grid.Col className="ta-center">
 					<h1 className="h-1">
 						<Text content={page.title} asText />
 					</h1>
 				</Grid.Col>
 				<Grid.Col>
-					<Flow spacing="4rem">
+					<Columns sm="2" md="3" lg="4">
 						{!!docs.length &&
 							sortDocsByLatestDate(docs).map((doc, key) => (
-								<ShowThumb key={key} doc={doc} />
+								<MemberCard
+									key={key}
+									link={hrefResolver(doc)}
+									name={doc.data.title}
+									position={doc.data.position}
+									photo={doc.data.img}
+								/>
 							))}
-					</Flow>
+					</Columns>
 				</Grid.Col>
 			</Grid>
 		</ColourSection>
@@ -57,13 +66,12 @@ export default Shows;
 
 export async function getStaticProps({ locale }) {
 	const client = Client();
-	const doc = await client.getSingle("repertorio", {
+	const doc = await client.getSingle("elenco", {
 		lang: locale,
 	});
 
 	const docs = await client.query(
-		Prismic.Predicates.at("document.type", "show"),
-		{ fetchLinks: ["membro.nome", "membro.img", "membro.position"] }
+		Prismic.Predicates.at("document.type", "member")
 	);
 
 	if (docs) {
