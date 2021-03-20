@@ -26,13 +26,13 @@ const App = ({ Component, pageProps }) => {
 	const FooterComponent = Component.Footer || Footer;
 	const [isOpen, setIsOpen] = useState(false);
 
-	const [history, setHistory] = useState([]);
+	const [parentPage, setParent] = useState([]);
 	useEffect(() => {
-		if (history[0] != asPath) setHistory([asPath, ...history]);
+		const parent = asPath.match(/\/([a-zA-z\-0-9\_]+)\//g)?.pop();
+		console.log(parent);
+
+		setParent(parent);
 	}, [asPath]);
-	const handleBack = () => {
-		setHistory(history.slice(1));
-	};
 
 	return (
 		<AvailableLocalesContext.Provider value={availableLocales}>
@@ -41,8 +41,7 @@ const App = ({ Component, pageProps }) => {
 					<Background />
 					{/* <CookieConsent /> */}
 					<NavbarComponent
-						history={history}
-						onBack={handleBack}
+						parent={parentPage}
 						isOpen={isOpen}
 						setIsOpen={setIsOpen}
 					/>
