@@ -8,7 +8,6 @@ const Text = ({ content, asText }) => {
 	if (typeof content === "string") {
 		return <>{content}</>;
 	}
-	console.warn("something went wrong when displaying <Text/>");
 	return null;
 };
 export default Text;
