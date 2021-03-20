@@ -25,7 +25,11 @@ export default function Post({ doc }) {
 				/>
 				<Grid className="py-3 c-fg">
 					{data.img?.url && (
-						<Grid.Col sm="grid-start / grid-end" md="grid-start / col-5">
+						<Grid.Col
+							sm="grid-start / grid-end"
+							md="col-3 / col-11"
+							lg="grid-start / col-5"
+						>
 							<Placeholder
 								src={data.img.url}
 								width={data.img.dimensions.width}
@@ -44,7 +48,7 @@ export default function Post({ doc }) {
 					>
 						{data.title && (
 							<>
-								<h1 className="h-2">
+								<h1 className="h-2 my-1">
 									<Text content={data.title} asText />
 								</h1>
 								<p className="h-3">
