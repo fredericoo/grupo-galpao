@@ -13,24 +13,6 @@ import MemberCard from "components/MemberCard/MemberCard";
 const Shows = ({ docs, doc }) => {
 	const page = doc.data;
 
-	const sortDocsByLatestDate = (docs) => {
-		const getLatestActivity = (activity) => {
-			const latestActivity = activity.sort(
-				(a, b) =>
-					Math.max(+b.activity_from, +b.activity_to) -
-					Math.max(+a.activity_from, +a.activity_to)
-			)[0];
-			return Math.max(latestActivity.activity_from, latestActivity.activity_to);
-		};
-
-		return docs.sort((a, b) =>
-			!!a.data.activity.length
-				? getLatestActivity(b.data.activity) -
-				  getLatestActivity(a.data.activity)
-				: -1
-		);
-	};
-
 	return (
 		<ColourSection bg="#141415" fg="#fafafa">
 			<Meta
@@ -46,7 +28,7 @@ const Shows = ({ docs, doc }) => {
 				<Grid.Col>
 					<Columns sm="2" md="3" lg="4">
 						{!!docs.length &&
-							sortDocsByLatestDate(docs).map((doc, key) => (
+							docs.map((doc, key) => (
 								<MemberCard
 									key={key}
 									link={hrefResolver(doc)}

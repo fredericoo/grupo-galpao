@@ -1,16 +1,20 @@
 import { Client } from "utils/prismicHelpers";
+import Prismic from "prismic-javascript";
 import { groupHasItems } from "utils/groups";
+import { hrefResolver } from "prismic-configuration";
 
 import Meta from "components/Meta/Meta";
 import Grid from "components/Grid/Grid";
 import ColourSection from "components/ColourSection/ColourSection";
 import Text from "components/Text/Text";
 import Placeholder from "components/Placeholder/Placeholder";
+import Columns from "components/Columns/Columns";
+import MemberCard from "components/MemberCard/MemberCard";
 import Metric from "components/Metric/Metric";
 import Timeline from "components/Timeline/Timeline";
 import Prizes from "components/Prizes/Prizes";
 
-const AboutPage = ({ doc }) => {
+const AboutPage = ({ doc, docs }) => {
 	const data = doc.data;
 
 	return (
@@ -80,6 +84,25 @@ const AboutPage = ({ doc }) => {
 					)}
 				</Grid>
 			</ColourSection>
+			<ColourSection bg="#141415" fg="#fafafa">
+				<Grid className="c-fg py-3">
+					<Grid.Col>
+						<Columns sm="2" md="3" lg="4">
+							{docs &&
+								!!docs.length &&
+								docs.map((doc) => (
+									<MemberCard
+										key={hrefResolver(doc)}
+										link={hrefResolver(doc)}
+										name={doc.data.title}
+										position={doc.data.position}
+										photo={doc.data.img}
+									/>
+								))}
+						</Columns>
+					</Grid.Col>
+				</Grid>
+			</ColourSection>
 			{groupHasItems(data.timeline) && (
 				<ColourSection bg="#0c2fb0" fg="#f5f5f5">
 					<Grid className="py-5">
@@ -119,16 +142,19 @@ const AboutPage = ({ doc }) => {
 export async function getStaticProps({ locale }) {
 	const client = Client();
 	const doc = await client.getSingle("about", { lang: locale });
-
-	if (doc) {
+	const docs = await client.query(
+		Prismic.Predicates.at("document.type", "member")
+	);
+	if (doc && docs) {
 		return {
 			revalidate: 600,
 			props: {
 				doc: doc || {},
+				docs: docs.results || [],
 			},
 		};
 	}
-	return { revalidate: 60, props: { doc: {} } };
+	return { revalidate: 60, props: { doc: {}, docs: [] } };
 }
 
 export default AboutPage;

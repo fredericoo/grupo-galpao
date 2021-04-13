@@ -1,0 +1,13 @@
+@import "styles/abstracts/mixins";
+
+.formas {
+	ul {
+		list-style-type: none;
+	}
+	li {
+		margin-bottom: 1rem;
+		dt {
+			opacity: 0.3;
+		}
+	}
+}

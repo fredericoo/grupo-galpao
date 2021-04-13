@@ -10,6 +10,13 @@
 	mix-blend-mode: multiply;
 }
 
+.sponsors {
+	transition: 0.6s ease-out;
+	&.invisible {
+		opacity: 0;
+	}
+}
+
 .brandGroup {
 	display: block;
 	margin-bottom: 2rem;

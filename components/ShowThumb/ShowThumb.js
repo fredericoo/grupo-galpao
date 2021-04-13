@@ -1,3 +1,4 @@
+import { Client } from "utils/prismicHelpers";
 import styles from "./ShowThumb.module.scss";
 
 import { groupHasItems } from "utils/groups";
@@ -12,14 +13,21 @@ import Placeholder from "components/Placeholder/Placeholder";
 import Grid from "components/Grid/Grid";
 import Text from "components/Text/Text";
 import Columns from "components/Columns/Columns";
+import useSWR from "swr";
+import { useRouter } from "next/router";
 
 const ShowThumb = ({ doc }) => {
 	const data = doc.data;
 	const { t } = useTranslation();
+	const client = Client();
 
-	const futureDates = data.dates.filter(
-		(range) => !moment(range.to).isBefore()
-	);
+	async function fetcher(uid) {
+		const filme = await client.getByUID("show", uid);
+		console.log(uid, filme);
+		if (!filme) return [];
+		return filme.data.dates.filter((range) => !moment(range.to).isBefore());
+	}
+	const { data: futureDates, error } = useSWR(doc.uid, fetcher);
 
 	return (
 		<Link href={hrefResolver(doc)}>
@@ -73,7 +81,7 @@ const ShowThumb = ({ doc }) => {
 									</dd>
 								</dl>
 							)}
-							{groupHasItems(futureDates) && (
+							{!error && futureDates && !!futureDates.length && (
 								<dl>
 									<dt className="h-3">
 										{t(

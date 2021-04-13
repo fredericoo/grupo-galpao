@@ -72,8 +72,6 @@ export default function Post({ doc }) {
 							)}
 						</Grid.Col>
 
-						<FutureDates uid={doc.uid} />
-
 						{data.cover?.url && (
 							<Grid.Col
 								sm="screen-start / screen-end"
@@ -90,6 +88,8 @@ export default function Post({ doc }) {
 								/>
 							</Grid.Col>
 						)}
+
+						<FutureDates uid={doc.uid} />
 						{data.long && (
 							<Grid.Col
 								md="col-2 / col-12"

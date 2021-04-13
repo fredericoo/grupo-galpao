@@ -10,10 +10,15 @@ import Columns from "components/Columns/Columns";
 import { useRouter } from "next/router";
 import Text from "components/Text/Text";
 import ColourSection from "components/ColourSection/ColourSection";
+import useIsInViewport from "use-is-in-viewport";
 
 const Footer = () => {
 	const { t } = useTranslation();
 	const { locale } = useRouter();
+	const [inView, ref] = useIsInViewport({
+		modBottom: "-50%",
+		modTop: "-49.9%",
+	});
 
 	async function fetcher(uid) {
 		const client = Client();
@@ -27,11 +32,13 @@ const Footer = () => {
 
 	return (
 		<ColourSection bg="#f0f0f0" fg="#131314">
-			<footer className={`${styles.section}`}>
+			<footer ref={ref} className={`${styles.section}`}>
 				<h2 className="visually-hidden">{t("common:footer")}</h2>
 				<Grid className="s-sm c-fg">
 					<Grid.Col
-						className="py-2"
+						className={`py-2 ${styles.sponsors} ${
+							inView ? "" : styles.invisible
+						}`}
 						lg="grid-start / col-10"
 						rowLg="1"
 						style={{ alignSelf: "end" }}
@@ -58,7 +65,6 @@ const Footer = () => {
 									</ul>
 								</div>
 							))}
-						{/* <Sponsors /> */}
 					</Grid.Col>
 					<Grid.Col sm="col-10 / screen-end" rowLg="1" className={styles.star}>
 						<Image
