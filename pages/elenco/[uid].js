@@ -2,17 +2,17 @@ import { Client } from "utils/prismicHelpers";
 import Prismic from "prismic-javascript";
 import { RichText } from "prismic-reactjs";
 
-import useTranslation from "next-translate/useTranslation";
-import { motion } from "framer-motion";
-
 import Meta from "components/Meta/Meta";
 import Text from "components/Text/Text";
 import ColourSection from "components/ColourSection/ColourSection";
 import Grid from "components/Grid/Grid";
 import Placeholder from "components/Placeholder/Placeholder";
+import { AvailableLocalesContext } from "utils/context";
+import { useEffect, useContext } from "react";
 
 export default function Post({ doc }) {
-	const { t } = useTranslation();
+	const [, setAvailableLocales] = useContext(AvailableLocalesContext);
+	useEffect(() => doc && setAvailableLocales(doc.alternate_languages), []);
 
 	if (doc && doc.data) {
 		const data = doc.data;

@@ -28,8 +28,6 @@ const ShowThumb = ({ doc }) => {
 	}
 	const { data: futureDates, error } = useSWR(doc.uid, fetcher);
 
-	console.log(data.carousel);
-
 	return (
 		<Link href={hrefResolver(doc)}>
 			<a className={styles.link}>

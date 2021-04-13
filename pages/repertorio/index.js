@@ -28,6 +28,8 @@ const Shows = ({ docs, doc }) => {
 		);
 	};
 
+	if (!page) return null;
+
 	return (
 		<ColourSection bg="#fafafa" fg="#141415">
 			<Grid className="c-fg py-3">

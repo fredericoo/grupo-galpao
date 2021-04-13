@@ -14,9 +14,14 @@ import Columns from "components/Columns/Columns";
 import Placeholder from "components/Placeholder/Placeholder";
 import Flow from "components/Flow/Flow";
 import FutureDates from "components/FutureDates/FutureDates";
+import { AvailableLocalesContext } from "utils/context";
+import { useEffect, useContext } from "react";
 
 export default function Post({ doc }) {
 	const { t } = useTranslation();
+
+	const [, setAvailableLocales] = useContext(AvailableLocalesContext);
+	useEffect(() => doc && setAvailableLocales(doc.alternate_languages), []);
 
 	if (doc && doc.data) {
 		const data = doc.data;
