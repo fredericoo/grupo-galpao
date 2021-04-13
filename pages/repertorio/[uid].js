@@ -72,17 +72,17 @@ export default function Post({ doc }) {
 							)}
 						</Grid.Col>
 
-						{data.cover?.url && (
+						{groupHasItems(data.carousel) && (
 							<Grid.Col
 								sm="screen-start / screen-end"
 								md="col-2 / col-12"
 								lg="col-3 / col-11"
 							>
 								<Placeholder
-									src={data.cover.url}
-									width={data.cover.dimensions.width}
-									height={data.cover.dimensions.height}
-									alt={data.cover.alt}
+									src={data.carousel[0].image.url}
+									width={data.carousel[0].image.dimensions.width}
+									height={data.carousel[0].image.dimensions.height}
+									alt={data.carousel[0].image.alt}
 									layout="responsive"
 									bg="var(--fg)"
 								/>

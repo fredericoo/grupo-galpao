@@ -14,7 +14,6 @@ import Grid from "components/Grid/Grid";
 import Text from "components/Text/Text";
 import Columns from "components/Columns/Columns";
 import useSWR from "swr";
-import { useRouter } from "next/router";
 
 const ShowThumb = ({ doc }) => {
 	const data = doc.data;
@@ -29,17 +28,19 @@ const ShowThumb = ({ doc }) => {
 	}
 	const { data: futureDates, error } = useSWR(doc.uid, fetcher);
 
+	console.log(data.carousel);
+
 	return (
 		<Link href={hrefResolver(doc)}>
 			<a className={styles.link}>
 				<Grid subgrid>
 					<Grid.Col md="grid-start / col-7" className={styles.image}>
-						{data.cover?.url && (
+						{groupHasItems(data.carousel) && (
 							<Placeholder
-								src={data.cover.url}
-								width={data.cover.dimensions.width}
-								height={data.cover.dimensions.height}
-								alt={data.cover.alt}
+								src={data.carousel[0].image.url}
+								width={data.carousel[0].image.dimensions.width}
+								height={data.carousel[0].image.dimensions.height}
+								alt={data.carousel[0].image.alt}
 								layout="responsive"
 								bg="var(--fg)"
 							/>
