@@ -64,7 +64,7 @@ export default function Post({ doc }) {
 											stiffness: 300,
 											damping: 50,
 										}}
-										className={`h-2`}
+										className={`h-2 c-fg`}
 									>
 										<Text content={data.title} asText />
 									</motion.h1>
