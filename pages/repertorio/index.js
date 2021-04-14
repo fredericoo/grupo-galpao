@@ -6,6 +6,7 @@ import Grid from "components/Grid/Grid";
 import Text from "components/Text/Text";
 import ShowThumb from "components/ShowThumb/ShowThumb";
 import Flow from "components/Flow/Flow";
+import { RichText } from "prismic-reactjs";
 
 const Shows = ({ docs, doc }) => {
 	const page = doc.data;

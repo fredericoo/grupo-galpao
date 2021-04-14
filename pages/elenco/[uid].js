@@ -12,7 +12,7 @@ import { useEffect, useContext } from "react";
 
 export default function Post({ doc }) {
 	const [, setAvailableLocales] = useContext(AvailableLocalesContext);
-	useEffect(() => doc && setAvailableLocales(doc.alternate_languages), []);
+	useEffect(() => doc && setAvailableLocales(doc.alternate_languages), [doc]);
 
 	if (doc && doc.data) {
 		const data = doc.data;
