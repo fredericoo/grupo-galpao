@@ -24,9 +24,13 @@ const ShowThumb = ({ doc }) => {
 		const filme = await client.getByUID("show", uid);
 		console.log(uid, filme);
 		if (!filme) return [];
-		return filme.data.dates.filter((range) => !moment(range.to).isBefore());
+		return filme.data.dates.filter(
+			(range) => range.from && range.to && !moment(range.to).isBefore()
+		);
 	}
-	const { data: futureDates, error } = useSWR(doc.uid, fetcher);
+	const { data: futureDates, error } = useSWR(doc.uid, fetcher, {
+		revalidateOnFocus: false,
+	});
 
 	return (
 		<Link href={hrefResolver(doc)}>
