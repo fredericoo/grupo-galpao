@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import Text from "components/Text/Text";
 import ColourSection from "components/ColourSection/ColourSection";
 import useIsInViewport from "use-is-in-viewport";
+import { groupHasItems } from "utils/groups";
 
 const Footer = () => {
 	const { t } = useTranslation();
@@ -46,7 +47,8 @@ const Footer = () => {
 						style={{ alignSelf: "end" }}
 					>
 						{!error &&
-							data?.patrocinio &&
+							data &&
+							groupHasItems(data.patrocinio) &&
 							data.patrocinio.map((sponsor, key) => (
 								<div key={key} className={styles.brandGroup}>
 									<h3 className="h-4">
