@@ -9,7 +9,8 @@ import HomeEvents from "components/Home/HomeEvents/HomeEvents";
 import HomeInstagram from "components/Home/HomeInstagram/HomeInstagram";
 
 export default function Home({ doc }) {
-	if (!doc) return null;
+	if (!doc?.data) return null;
+
 	return (
 		<>
 			<Meta />

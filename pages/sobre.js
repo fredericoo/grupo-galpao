@@ -16,6 +16,7 @@ import Prizes from "components/Prizes/Prizes";
 
 const AboutPage = ({ doc, docs }) => {
 	const data = doc.data;
+	if (!data) return null;
 
 	return (
 		<>

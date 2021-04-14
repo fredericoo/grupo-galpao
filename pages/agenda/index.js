@@ -80,8 +80,8 @@ const Agenda = ({ doc }) => {
 
 	return (
 		<ColourSection bg="#1b3ecc" fg="#f5f5f5">
-			<Grid className="c-fg py-3">
-				{doc && (
+			{doc?.data && (
+				<Grid className="c-fg py-3">
 					<Grid.Col className="ta-center mb-3">
 						<Meta
 							pageTitle={doc.data.seo_title || RichText.asText(doc.data.title)}
@@ -91,33 +91,33 @@ const Agenda = ({ doc }) => {
 							{doc?.data && <Text content={doc.data.title} asText />}
 						</h1>
 					</Grid.Col>
-				)}
-				<Grid.Col
-					className="mb-4"
-					lg="grid-start / col-7"
-					xl="grid-start / col-5"
-				>
-					<Calendar
-						onChange={handleChange}
-						value={selectedDate}
-						markedDates={markedDates}
-					/>
-				</Grid.Col>
-				<Grid.Col lg="col-7 / grid-end" xl="col-5 / grid-end">
-					<h2 className="visually-hidden">
-						{t("common:eventosEm")}{" "}
-						{moment(selectedDate, "YYYY-MM-DD").format("MMMM")}
-					</h2>
+					<Grid.Col
+						className="mb-4"
+						lg="grid-start / col-7"
+						xl="grid-start / col-5"
+					>
+						<Calendar
+							onChange={handleChange}
+							value={selectedDate}
+							markedDates={markedDates}
+						/>
+					</Grid.Col>
+					<Grid.Col lg="col-7 / grid-end" xl="col-5 / grid-end">
+						<h2 className="visually-hidden">
+							{t("common:eventosEm")}{" "}
+							{moment(selectedDate, "YYYY-MM-DD").format("MMMM")}
+						</h2>
 
-					{!errorEvents && !events && !errorShows && !shows ? (
-						<Loader />
-					) : (
-						visibleEvents.map((event, key) => (
-							<EventRow key={key} event={event} />
-						))
-					)}
-				</Grid.Col>
-			</Grid>
+						{!errorEvents && !events && !errorShows && !shows ? (
+							<Loader />
+						) : (
+							visibleEvents.map((event, key) => (
+								<EventRow key={key} event={event} />
+							))
+						)}
+					</Grid.Col>
+				</Grid>
+			)}
 		</ColourSection>
 	);
 };

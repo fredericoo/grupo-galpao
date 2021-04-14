@@ -26,8 +26,16 @@ export default function Post({ doc }) {
 			<>
 				<ColourSection bg={data.bg} fg={data.fg}>
 					<Meta
-						pageTitle={data.seo_title || RichText.asText(data.title)}
-						pageDesc={data.seo_desc || RichText.asText(data.short)}
+						pageTitle={
+							data.seo_title || data.title
+								? RichText.asText(data.title)
+								: undefined
+						}
+						pageDesc={
+							data.seo_desc || data.short
+								? RichText.asText(data.short)
+								: undefined
+						}
 						pageImage={data.seo_img?.url || data.cover?.url}
 					/>
 					<Grid className="py-3 c-fg">
@@ -51,9 +59,11 @@ export default function Post({ doc }) {
 											<Text content={data.type} asText />
 										</p>
 									)}
-									<h1 className={`h-2`}>
-										<Text content={data.title} asText />
-									</h1>
+									{data.title && (
+										<h1 className={`h-2`}>
+											<Text content={data.title} asText />
+										</h1>
+									)}
 									{data.subtitle && (
 										<p className="h-4">
 											<Text content={data.subtitle} asText />

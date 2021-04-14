@@ -15,31 +15,33 @@ const Shows = ({ docs, doc }) => {
 
 	return (
 		<ColourSection bg="#141415" fg="#fafafa">
-			<Meta
-				pageTitle={page.seo_title || RichText.asText(page.title)}
-				pageDesc={page.seo_desc}
-			/>
-			<Grid className="c-fg py-3">
-				<Grid.Col className="ta-center">
-					<h1 className="h-1">
-						<Text content={page.title} asText />
-					</h1>
-				</Grid.Col>
-				<Grid.Col>
-					<Columns sm="2" md="3" lg="4">
-						{!!docs.length &&
-							docs.map((doc, key) => (
-								<MemberCard
-									key={key}
-									link={hrefResolver(doc)}
-									name={doc.data.title}
-									position={doc.data.position}
-									photo={doc.data.img}
-								/>
-							))}
-					</Columns>
-				</Grid.Col>
-			</Grid>
+			{page && (
+				<Grid className="c-fg py-3">
+					<Meta
+						pageTitle={page.seo_title || RichText.asText(page.title)}
+						pageDesc={page.seo_desc}
+					/>
+					<Grid.Col className="ta-center">
+						<h1 className="h-1">
+							<Text content={page.title} asText />
+						</h1>
+					</Grid.Col>
+					<Grid.Col>
+						<Columns sm="2" md="3" lg="4">
+							{!!docs.length &&
+								docs.map((doc, key) => (
+									<MemberCard
+										key={key}
+										link={hrefResolver(doc)}
+										name={doc.data.title}
+										position={doc.data.position}
+										photo={doc.data.img}
+									/>
+								))}
+						</Columns>
+					</Grid.Col>
+				</Grid>
+			)}
 		</ColourSection>
 	);
 };

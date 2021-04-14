@@ -32,25 +32,27 @@ const Shows = ({ docs, doc }) => {
 
 	return (
 		<ColourSection bg="#fafafa" fg="#141415">
-			<Grid className="c-fg py-3">
-				<Grid.Col className="ta-center mb-3">
-					<Meta
-						pageTitle={page.seo_title || RichText.asText(page.title)}
-						pageDesc={page.seo_desc}
-					/>
-					<h1 className="h-1">
-						<Text content={page.title} asText />
-					</h1>
-				</Grid.Col>
-				<Grid.Col>
-					<Flow spacing="4rem">
-						{!!docs.length &&
-							sortDocsByLatestDate(docs).map((doc, key) => (
-								<ShowThumb key={key} doc={doc} />
-							))}
-					</Flow>
-				</Grid.Col>
-			</Grid>
+			{page && (
+				<Grid className="c-fg py-3">
+					<Grid.Col className="ta-center mb-3">
+						<Meta
+							pageTitle={page.seo_title || RichText.asText(page.title)}
+							pageDesc={page.seo_desc}
+						/>
+						<h1 className="h-1">
+							<Text content={page.title} asText />
+						</h1>
+					</Grid.Col>
+					<Grid.Col>
+						<Flow spacing="4rem">
+							{!!docs.length &&
+								sortDocsByLatestDate(docs).map((doc, key) => (
+									<ShowThumb key={key} doc={doc} />
+								))}
+						</Flow>
+					</Grid.Col>
+				</Grid>
+			)}
 		</ColourSection>
 	);
 };
