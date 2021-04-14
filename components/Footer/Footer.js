@@ -28,7 +28,9 @@ const Footer = () => {
 		});
 		return doc.data;
 	}
-	const { data, error } = useSWR("footer", fetcher);
+	const { data, error } = useSWR("footer", fetcher, {
+		revalidateOnFocus: false,
+	});
 
 	return (
 		<ColourSection bg="#f0f0f0" fg="#131314">

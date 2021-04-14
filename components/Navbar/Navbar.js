@@ -28,7 +28,9 @@ const Navbar = ({ parent, isOpen, setIsOpen }) => {
 		});
 		return doc.data.menu;
 	}
-	const { data: menu, error } = useSWR("config", fetcher);
+	const { data: menu, error } = useSWR("config", fetcher, {
+		revalidateOnFocus: false,
+	});
 
 	return (
 		<nav className={`${styles.navbar} bg-bg`}>

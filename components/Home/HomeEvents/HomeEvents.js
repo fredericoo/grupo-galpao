@@ -18,13 +18,21 @@ const getFutureFrom = (events) =>
 	events.filter(
 		(event) =>
 			groupHasItems(event.data.dates) &&
-			!!event.data.dates.filter((range) => !moment(range.dates_to).isBefore())
-				.length
+			!!event.data.dates.filter(
+				(range) =>
+					range.dates_from &&
+					range.dates_to &&
+					!moment(range.dates_to).isBefore()
+			).length
 	);
 
 const HomeEvents = ({ title, cta }) => {
-	const { data: shows, error: errorShows } = useSWR("show", fetchAllOfType);
-	const { data: events, error: errorEvents } = useSWR("event", fetchAllOfType);
+	const { data: shows, error: errorShows } = useSWR("show", fetchAllOfType, {
+		revalidateOnFocus: false,
+	});
+	const { data: events, error: errorEvents } = useSWR("event", fetchAllOfType, {
+		revalidateOnFocus: false,
+	});
 
 	const [futureEvents, setFutureEvents] = useState([]);
 

@@ -18,10 +18,15 @@ const FutureDates = ({ uid }) => {
 		const doc = await client.getByUID("show", uid, {
 			lang: locale,
 		});
-		return doc.data.dates.filter((range) => !moment(range.dates_to).isBefore());
+		return doc.data.dates.filter(
+			(range) =>
+				range.dates_from && range.dates_to && !moment(range.dates_to).isBefore()
+		);
 	}
 
-	const { data: futureDates, error } = useSWR(uid, fetcher);
+	const { data: futureDates, error } = useSWR(uid, fetcher, {
+		revalidateOnFocus: false,
+	});
 
 	if (!error) {
 		if (futureDates && groupHasItems(futureDates)) {
