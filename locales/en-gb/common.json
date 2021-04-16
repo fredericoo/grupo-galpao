@@ -1,17 +1,17 @@
 {
 	"title": "Grupo Galpão",
 	"desc": "Companhia teatral fundada em BH em 1982, com base na tradição do teatro de rua.",
-	"menu": "Abre ou fecha o menu.",
-	"agenda": "Agenda",
+	"menu": "Opens or closes the menu.",
+	"agenda": "Events",
 	"footer": "Rodapé",
 	"separator": {
 		"decimals": ","
 	},
-	"direcao": "Direção",
+	"direcao": "Directed by",
 	"sinopse": "Sinopse",
-	"ano": "Ano",
+	"ano": "Year",
 	"fichaTecnica": "Ficha Técnica",
-	"proximasDatas": { "singular": "Próxima data", "plural": "Próximas datas" },
+	"proximasDatas": { "singular": "Next showing", "plural": "Previous showing" },
 	"curtidas": "curtidas",
 	"comentarios": "comentários",
 	"eventosEm": "Eventos em",
