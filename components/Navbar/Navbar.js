@@ -49,7 +49,8 @@ const Navbar = ({ parent, isOpen, setIsOpen }) => {
 								strokeLinecap="butt"
 								strokeLinejoin="arcs"
 							>
-								<path d="M19 12H6M12 5l-7 7 7 7" />
+								<path d="M15 10L9 4l-6 6" />
+								<path d="M20 20h-7a4 4 0 0 1-4-4V5" />
 							</svg>
 						</a>
 					</Link>
