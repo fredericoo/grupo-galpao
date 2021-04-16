@@ -12,7 +12,7 @@ import Link from "next/link";
 import LangPicker from "components/LangPicker/LangPicker";
 
 const Navbar = ({ parent, isOpen, setIsOpen }) => {
-	const { asPath } = useRouter();
+	const { asPath, locale } = useRouter();
 	const toggle = () => setIsOpen(!isOpen);
 	const { t } = useTranslation();
 
@@ -20,15 +20,16 @@ const Navbar = ({ parent, isOpen, setIsOpen }) => {
 		setIsOpen(false);
 	}, [asPath]);
 
-	const { locale } = useRouter();
-	async function fetcher(uid) {
+	async function fetcher(lang) {
 		const client = Client();
+		console.log(lang);
+
 		const doc = await client.getSingle(uid, {
-			lang: locale,
+			lang: lang,
 		});
 		return doc.data.menu;
 	}
-	const { data: menu, error } = useSWR("config", fetcher, {
+	const { data: menu, error } = useSWR(locale, fetcher, {
 		revalidateOnFocus: false,
 	});
 
