@@ -1,7 +1,7 @@
 import styles from "./Prizes.module.scss";
 import Prize from "./Prize";
 
-const Prizes = ({ entries }) => {
+const Prizes = ({ entries, showYears = true }) => {
 	const entriesByYear = Array.from(
 		new Set(entries.map((entry) => entry.prizes_year))
 	)
@@ -15,7 +15,7 @@ const Prizes = ({ entries }) => {
 		<div>
 			{entriesByYear.map((group, key) => (
 				<div key={key}>
-					<h3 className="h-2 ta-center my-3">{group.year}</h3>
+					{showYears && <h3 className="h-2 ta-center my-3">{group.year}</h3>}
 					<ul className={styles.prizes}>
 						{group.prizes
 							.filter((prize) => prize.prizes_title)

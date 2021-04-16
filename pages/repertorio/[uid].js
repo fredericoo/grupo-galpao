@@ -5,6 +5,7 @@ import { RichText } from "prismic-reactjs";
 
 import useTranslation from "next-translate/useTranslation";
 import { motion } from "framer-motion";
+import { hrefResolver } from "prismic-configuration";
 
 import Meta from "components/Meta/Meta";
 import Text from "components/Text/Text";
@@ -15,15 +16,18 @@ import Placeholder from "components/Placeholder/Placeholder";
 import PhotoCarousel from "components/PhotoCarousel/PhotoCarousel";
 import Flow from "components/Flow/Flow";
 import FutureDates from "components/FutureDates/FutureDates";
+import MemberCard from "components/MemberCard/MemberCard";
+import Prizes from "components/Prizes/Prizes";
 import { AvailableLocalesContext } from "utils/context";
 import { useEffect, useContext } from "react";
 
-export default function Post({ doc }) {
+export default function Post({ doc, premios }) {
 	const { t } = useTranslation();
 
 	const [, setAvailableLocales] = useContext(AvailableLocalesContext);
 	useEffect(() => doc && setAvailableLocales(doc.alternate_languages), [doc]);
 
+	const prizes = premios.filter((item) => item.prizes_play.uid === doc.uid);
 	if (doc && doc.data) {
 		const data = doc.data;
 		return (
@@ -143,6 +147,26 @@ export default function Post({ doc }) {
 									))}
 							</Flow>
 						</Grid.Col>
+						{!!data.cast.length && (
+							<Grid.Col className="py-3 c-fg">
+								<h2 className="h-2 ta-center mb-3">{t("common:elenco")}</h2>
+								<Columns sm="2" md="3" lg="4">
+									{data.cast.map((member, key) => (
+										<MemberCard
+											key={key}
+											link={
+												member.cast_member.data
+													? hrefResolver(member.cast_member)
+													: undefined
+											}
+											name={member.cast_member?.data?.title || member.cast_name}
+											photo={member.cast_member?.data?.img}
+											position={member.cast_character}
+										/>
+									))}
+								</Columns>
+							</Grid.Col>
+						)}
 					</Grid>
 				</ColourSection>
 				<ColourSection bg={data.fg} fg={data.bg}>
@@ -168,6 +192,16 @@ export default function Post({ doc }) {
 						)}
 					</Grid>
 				</ColourSection>
+				{!!prizes.length && (
+					<ColourSection bg="#ffcb05" fg="#000000">
+						<Grid className="c-fg">
+							<Grid.Col>
+								<h2 className="h-2 ta-center mb-3">{t("common:premios")}</h2>
+								<Prizes entries={prizes} showYears={false} />
+							</Grid.Col>
+						</Grid>
+					</ColourSection>
+				)}
 			</>
 		);
 	}
@@ -198,13 +232,19 @@ export async function getStaticProps({ params, locale }) {
 		fetchLinks: ["member.title", "member.position", "member.img"],
 	});
 
+	const premios = await client.getSingle("about", {
+		lang: locale,
+		fetchLinks: ["member.title", "show.title"],
+	});
+
 	if (doc) {
 		return {
 			revalidate: 60,
 			props: {
 				doc: doc || {},
+				premios: premios.data?.prizes || [],
 			},
 		};
 	}
-	return { revalidate: 60, props: { doc: {} } };
+	return { revalidate: 60, props: { doc: {}, premios: [] } };
 }

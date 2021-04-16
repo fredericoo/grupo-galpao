@@ -16,6 +16,9 @@
 			border-bottom: 0.1em solid transparent;
 		}
 	}
+}
+
+a.wrapper {
 	@include on-event {
 		text-decoration: none;
 		h3 {
