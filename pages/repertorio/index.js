@@ -68,7 +68,10 @@ export async function getStaticProps({ locale }) {
 
 	const docs = await client.query(
 		Prismic.Predicates.at("document.type", "show"),
-		{ fetchLinks: ["membro.nome", "membro.img", "membro.position"] }
+		{
+			fetchLinks: ["membro.nome", "membro.img", "membro.position"],
+			lang: locale,
+		}
 	);
 
 	if (docs) {
