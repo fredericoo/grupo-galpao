@@ -77,7 +77,7 @@ export default function Post({ doc }) {
 							)}
 						</Grid.Col>
 
-						{groupHasItems(data.carousel) && (
+						{groupHasItems(data.carousel) && data.carousel[0].image.url && (
 							<Grid.Col
 								sm="screen-start / screen-end"
 								md="col-2 / col-12"
