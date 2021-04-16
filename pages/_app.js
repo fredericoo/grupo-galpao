@@ -29,7 +29,6 @@ const App = ({ Component, pageProps }) => {
 	const [parentPage, setParent] = useState([]);
 	useEffect(() => {
 		const parent = asPath.match(/\/([a-zA-z\-0-9\_]+)\//g)?.pop();
-		console.log(parent);
 
 		setParent(parent);
 	}, [asPath]);

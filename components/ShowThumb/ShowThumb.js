@@ -22,7 +22,6 @@ const ShowThumb = ({ doc }) => {
 
 	async function fetcher(uid) {
 		const filme = await client.getByUID("show", uid);
-		console.log(uid, filme);
 		if (!filme) return [];
 		return filme.data.dates.filter(
 			(range) => range.from && range.to && !moment(range.to).isBefore()
