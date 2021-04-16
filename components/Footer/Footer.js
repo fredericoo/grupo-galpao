@@ -49,26 +49,29 @@ const Footer = () => {
 						{!error &&
 							data &&
 							groupHasItems(data.patrocinio) &&
-							data.patrocinio.map((sponsor, key) => (
-								<div key={key} className={styles.brandGroup}>
-									<h3 className="h-4">
-										<Text content={sponsor.group.data.title} asText />
-									</h3>
-									<ul>
-										{sponsor.group.data.logos.map((item, key) => (
-											<li key={key}>
-												<Image
-													src={item.logo.url}
-													alt={item.logo.alt}
-													layout="fill"
-													objectFit="contain"
-													objectPosition="left center"
-												/>
-											</li>
-										))}
-									</ul>
-								</div>
-							))}
+							data.patrocinio.map(
+								(sponsor, key) =>
+									sponsor.group?.data && (
+										<div key={key} className={styles.brandGroup}>
+											<h3 className="h-4">
+												<Text content={sponsor.group.data.title} asText />
+											</h3>
+											<ul>
+												{sponsor.group.data.logos.map((item, key) => (
+													<li key={key}>
+														<Image
+															src={item.logo.url}
+															alt={item.logo.alt}
+															layout="fill"
+															objectFit="contain"
+															objectPosition="left center"
+														/>
+													</li>
+												))}
+											</ul>
+										</div>
+									)
+							)}
 					</Grid.Col>
 					<Grid.Col sm="col-10 / screen-end" rowLg="1" className={styles.star}>
 						<Image
