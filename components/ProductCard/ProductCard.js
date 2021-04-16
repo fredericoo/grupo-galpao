@@ -13,7 +13,15 @@ const ProductCard = ({ title, price, image, link }) => {
 		<WrapperTag link={link}>
 			<Flow>
 				<figure className={styles.image}>
-					{image && <Placeholder src={image} layout="fill" alt={image.alt} />}
+					{image && (
+						<Placeholder
+							src={image}
+							layout="fill"
+							alt={image.alt}
+							objectFit="contain"
+							style={{ background: "transparent" }}
+						/>
+					)}
 				</figure>
 				<figcaption
 					className={`${styles.info} ff-headings ${
