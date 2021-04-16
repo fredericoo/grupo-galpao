@@ -1,6 +1,7 @@
 .prizes {
 	display: flex;
 	justify-content: center;
+	flex-wrap: wrap;
 	li {
 		flex: 0 1 250px;
 		padding: 1rem;
