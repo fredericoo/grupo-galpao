@@ -12,6 +12,7 @@ import ColourSection from "components/ColourSection/ColourSection";
 import Grid from "components/Grid/Grid";
 import Columns from "components/Columns/Columns";
 import Placeholder from "components/Placeholder/Placeholder";
+import PhotoCarousel from "components/PhotoCarousel/PhotoCarousel";
 import Flow from "components/Flow/Flow";
 import FutureDates from "components/FutureDates/FutureDates";
 import { AvailableLocalesContext } from "utils/context";
@@ -80,17 +81,10 @@ export default function Post({ doc }) {
 						{groupHasItems(data.carousel) && data.carousel[0].image.url && (
 							<Grid.Col
 								sm="screen-start / screen-end"
-								md="col-2 / col-12"
-								lg="col-3 / col-11"
+								md="grid-start / grid-end"
+								lg="col-2 / col-12"
 							>
-								<Placeholder
-									src={data.carousel[0].image.url}
-									width={data.carousel[0].image.dimensions.width}
-									height={data.carousel[0].image.dimensions.height}
-									alt={data.carousel[0].image.alt}
-									layout="responsive"
-									bg="var(--fg)"
-								/>
+								<PhotoCarousel photos={data.carousel} />
 							</Grid.Col>
 						)}
 

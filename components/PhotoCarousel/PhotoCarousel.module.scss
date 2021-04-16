@@ -1,0 +1,62 @@
+@import "styles/abstracts/mixins";
+
+.section {
+	user-select: none;
+	color: var(--fg);
+	margin-bottom: 3rem;
+}
+
+.slide {
+	position: relative;
+	height: 80vmin;
+	&:nth-child(1) {
+		grid-column: screen-start / col-7;
+		@include responsive($tablet-p) {
+			grid-column: screen-start / grid-start;
+		}
+	}
+	&:nth-child(2) {
+		grid-row: 1;
+		grid-column: screen-start / screen-end;
+		@include responsive($tablet-p) {
+			grid-column: grid-start / grid-end;
+		}
+	}
+	&:nth-child(3) {
+		grid-column: screen-end / col-7;
+		@include responsive($tablet-p) {
+			grid-column: screen-end / grid-end;
+		}
+	}
+
+	&.interactive {
+		grid-row: 1;
+		z-index: 2;
+		display: flex;
+		justify-content: center;
+		align-items: flex-end;
+		opacity: 0.5;
+		transform: translateY(3rem);
+		@include responsive($tablet-p) {
+			align-items: center;
+		}
+		height: 100%;
+		& > div {
+			visibility: hidden;
+			height: 100%;
+			width: 100%;
+			position: absolute;
+		}
+		@include on-event {
+			@include responsive($tablet-p) {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+.slideNo {
+	margin-top: 0.5rem;
+	grid-column: grid-start / grid-end;
+	text-align: center;
+}
