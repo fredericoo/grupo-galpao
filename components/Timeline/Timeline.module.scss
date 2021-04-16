@@ -42,9 +42,12 @@
 		}
 
 		@include responsive($tablet-l) {
+			&:nth-child(odd) {
+				padding-bottom: 10rem;
+			}
 			&:nth-child(even) {
-				margin-top: 25%;
-				margin-bottom: -25%;
+				padding-top: 10rem;
+				margin-bottom: -10rem;
 
 				.img {
 					text-align: left;
