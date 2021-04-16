@@ -8,17 +8,16 @@ const MemberCard = ({ name, photo, position, link }) => {
 		return (
 			<Link href={link}>
 				<a className={`ta-center ${styles.wrapper}`}>
-					{photo?.url && (
-						<figure className={styles.image}>
-							<Placeholder
-								src={photo.url}
-								width={photo.dimensions.width}
-								height={photo.dimensions.height}
-								alt={photo.alt}
-								layout="responsive"
-							/>
-						</figure>
-					)}
+					<figure className={styles.image}>
+						<Placeholder
+							src={photo?.url || "/img/placeholder.png"}
+							width={916}
+							height={567}
+							alt={name}
+							layout="responsive"
+						/>
+					</figure>
+
 					<h3 className="h-3 my-1">
 						<span>
 							<Text content={name} asText />
