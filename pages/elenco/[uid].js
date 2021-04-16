@@ -17,7 +17,7 @@ export default function Post({ doc, premios }) {
 	const { t } = useTranslation();
 	useEffect(() => doc && setAvailableLocales(doc.alternate_languages), [doc]);
 
-	const prizes = premios.filter((item) => item.prizes_actor.uid === doc.uid);
+	const prizes = premios?.filter((item) => item.prizes_actor.uid === doc.uid);
 	if (doc && doc.data) {
 		const data = doc.data;
 		return (
