@@ -17,15 +17,19 @@ const Prizes = ({ entries }) => {
 				<div key={key}>
 					<h3 className="h-2 ta-center my-3">{group.year}</h3>
 					<ul className={styles.prizes}>
-						{group.prizes.map((prize, key) => (
-							<li key={key}>
-								<Prize
-									title={prize.prizes_title}
-									year={prize.prizes_year}
-									info={prize.prizes_text}
-								/>
-							</li>
-						))}
+						{group.prizes
+							.filter((prize) => prize.prizes_title)
+							.map((prize, key) => (
+								<li key={key}>
+									<Prize
+										title={prize.prizes_title}
+										year={prize.prizes_year}
+										info={prize.prizes_cat}
+										member={prize.prizes_actor}
+										show={prize.prizes_play}
+									/>
+								</li>
+							))}
 					</ul>
 				</div>
 			))}

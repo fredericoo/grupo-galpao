@@ -142,7 +142,10 @@ const AboutPage = ({ doc, docs }) => {
 
 export async function getStaticProps({ locale }) {
 	const client = Client();
-	const doc = await client.getSingle("about", { lang: locale });
+	const doc = await client.getSingle("about", {
+		lang: locale,
+		fetchLinks: ["member.title", "show.title"],
+	});
 	const docs = await client.query(
 		Prismic.Predicates.at("document.type", "member")
 	);
