@@ -23,7 +23,7 @@ const HomeProducts = ({ subtitle, title, text, link, cta }) => {
 		[]
 	);
 
-	const [isInViewport, targetRef] = useColourEffect({
+	const [, targetRef] = useColourEffect({
 		fg: "#17235f",
 		bg: "#deab1c",
 	});
