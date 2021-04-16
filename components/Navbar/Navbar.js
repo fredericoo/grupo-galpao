@@ -22,9 +22,8 @@ const Navbar = ({ parent, isOpen, setIsOpen }) => {
 
 	async function fetcher(lang) {
 		const client = Client();
-		console.log(lang);
 
-		const doc = await client.getSingle(uid, {
+		const doc = await client.getSingle("config", {
 			lang: lang,
 		});
 		return doc.data.menu;
