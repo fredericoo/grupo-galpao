@@ -37,7 +37,7 @@ const ShowThumb = ({ doc }) => {
 			<a className={styles.link}>
 				<Grid subgrid>
 					<Grid.Col md="grid-start / col-7" className={styles.image}>
-						{groupHasItems(data.carousel) && (
+						{groupHasItems(data.carousel) && data.carousel[0].image.url && (
 							<Placeholder
 								src={data.carousel[0].image.url}
 								width={data.carousel[0].image.dimensions.width}
@@ -72,18 +72,19 @@ const ShowThumb = ({ doc }) => {
 							</div>
 						)}
 						<Columns sm={1} md={2}>
-							{groupHasItems(data.directors) && (
-								<dl>
-									<dt className="h-3">{t("common:direcao")}</dt>
-									<dd>
-										<Text
-											content={data.directors
-												.map((director) => director.directors_name)
-												.join(", ")}
-										/>
-									</dd>
-								</dl>
-							)}
+							{groupHasItems(data.directors) &&
+								data.directors[0].directors_name && (
+									<dl>
+										<dt className="h-3">{t("common:direcao")}</dt>
+										<dd>
+											<Text
+												content={data.directors
+													.map((director) => director.directors_name)
+													.join(", ")}
+											/>
+										</dd>
+									</dl>
+								)}
 							{!error && futureDates && !!futureDates.length && (
 								<dl>
 									<dt className="h-3">
