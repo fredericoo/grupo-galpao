@@ -40,9 +40,9 @@ const Agenda = ({ doc }) => {
 				.map((event) =>
 					event.data.dates
 						.map((range) => {
-							return new Array(
-								moment(range.dates_to).diff(range.dates_from, "days")
-							)
+							const rangeLength =
+								moment(range.dates_to).diff(range.dates_from, "days") || 0;
+							return new Array(rangeLength)
 								.fill()
 								.map((_, i) =>
 									moment(range.dates_from).add(i, "d").format("YYYY-MM-DD")
