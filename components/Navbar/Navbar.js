@@ -95,23 +95,26 @@ const Navbar = ({ parent, isOpen, setIsOpen }) => {
 				<div className={`${styles.tools} ${isOpen ? styles.open : ""}`}>
 					<ul className={styles.menu}>
 						{menu &&
-							menu.map((option) => {
-								const href = hrefResolver(option.link);
-								return (
-									<li key={option.label}>
-										<Link href={href}>
-											<a
-												target={option.link.target}
-												className={`h-2 ${styles.item} ${
-													asPath === href ? styles.active : ""
-												}`}
-											>
-												<span>{option.label}</span>
-											</a>
-										</Link>
-									</li>
-								);
-							})}
+							menu
+								.filter((option) => option.link.url || option.link.uid)
+								.map((option) => {
+									const href = hrefResolver(option.link);
+									if (typeof href === undefined) return;
+									return (
+										<li key={option.label}>
+											<Link href={href}>
+												<a
+													target={option.link.target}
+													className={`h-2 ${styles.item} ${
+														asPath === href ? styles.active : ""
+													}`}
+												>
+													<span>{option.label}</span>
+												</a>
+											</Link>
+										</li>
+									);
+								})}
 					</ul>
 					<LangPicker />
 				</div>
