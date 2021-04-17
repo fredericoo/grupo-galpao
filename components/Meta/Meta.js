@@ -7,7 +7,7 @@ const Meta = ({ pageTitle, pageDesc, pageType, pageImage }) => {
 	const { asPath } = useRouter();
 	const tabInfo = {
 		title: pageTitle
-			? `${pageTitle} — ${t("common:title")}`
+			? `${pageTitle} ✭ ${t("common:title")}`
 			: t("common:title"),
 		desc: pageDesc ? pageDesc : t("common:desc"),
 	};
