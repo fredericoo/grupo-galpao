@@ -5,8 +5,8 @@ import { Client } from "utils/prismicHelpers";
 import useSWR from "swr";
 
 import Image from "next/image";
+import Link from "next/link";
 import Grid from "components/Grid/Grid";
-import Columns from "components/Columns/Columns";
 import { useRouter } from "next/router";
 import Text from "components/Text/Text";
 import ColourSection from "components/ColourSection/ColourSection";
@@ -38,6 +38,23 @@ const Footer = () => {
 			<footer ref={ref} className={`${styles.section}`}>
 				<h2 className="visually-hidden">{t("common:footer")}</h2>
 				<Grid className="s-sm c-fg">
+					<Grid.Col>
+						{data && data.social && (
+							<div className={styles.social}>
+								{data.social
+									.filter(
+										(item) => item.icone && (item.link.url || item.link.uid)
+									)
+									.map((item, index) => (
+										<Link key={index} href={hrefResolver(item.link)} passHref>
+											<a>
+												<img src={item.icone.url} />
+											</a>
+										</Link>
+									))}
+							</div>
+						)}
+					</Grid.Col>
 					<Grid.Col
 						className={`py-2 ${styles.sponsors} ${
 							inView ? "" : styles.invisible
@@ -72,6 +89,11 @@ const Footer = () => {
 										</div>
 									)
 							)}
+						{data && data.footer_text && (
+							<div className="fs-xs c-fg">
+								<Text content={data.footer_text} />
+							</div>
+						)}
 					</Grid.Col>
 					<Grid.Col sm="col-10 / screen-end" rowLg="1" className={styles.star}>
 						<Image
