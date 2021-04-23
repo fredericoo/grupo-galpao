@@ -7,9 +7,16 @@ import Text from "components/Text/Text";
 import ShowThumb from "components/ShowThumb/ShowThumb";
 import Flow from "components/Flow/Flow";
 import { RichText } from "prismic-reactjs";
+import { useState } from "react";
+import useTranslation from "next-translate/useTranslation";
+import Button from "components/Button/Button";
 
 const Shows = ({ docs, doc }) => {
 	const page = doc.data;
+	const [show, setShow] = useState(10);
+	const { t } = useTranslation();
+
+	const nextPage = () => setShow(show + 10);
 
 	const sortDocsByLatestDate = (docs) => {
 		const getLatestActivity = (activity) => {
@@ -47,10 +54,17 @@ const Shows = ({ docs, doc }) => {
 					<Grid.Col>
 						<Flow spacing="4rem">
 							{!!docs.length &&
-								sortDocsByLatestDate(docs).map((doc, key) => (
-									<ShowThumb key={key} doc={doc} />
-								))}
+								sortDocsByLatestDate(docs)
+									.slice(0, show)
+									.map((doc, key) => <ShowThumb key={key} doc={doc} />)}
 						</Flow>
+						{docs.length > show && (
+							<div className="ta-center py-3">
+								<Button type="ghost" onClick={nextPage}>
+									{t("common:carregarMais")}
+								</Button>
+							</div>
+						)}
 					</Grid.Col>
 				</Grid>
 			)}
@@ -69,6 +83,7 @@ export async function getStaticProps({ locale }) {
 	const docs = await client.query(
 		Prismic.Predicates.at("document.type", "show"),
 		{
+			pageSize: 100,
 			fetchLinks: ["membro.nome", "membro.img", "membro.position"],
 			lang: locale,
 		}
