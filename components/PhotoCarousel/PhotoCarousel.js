@@ -22,7 +22,7 @@ const PhotoCarousel = ({ photos }) => {
 	return (
 		<div className={`${styles.section} grid grid--full`}>
 			<CarouselSlide
-				key={photos[displaySlides.previous].image.url}
+				key={"prev" + photos[displaySlides.previous].image.url}
 				photo={photos[displaySlides.previous].image}
 				onClick={() => changeSlide(displaySlides.previous)}
 			>
@@ -47,7 +47,7 @@ const PhotoCarousel = ({ photos }) => {
 				photo={photos[displaySlides.current].image}
 			/>
 			<CarouselSlide
-				key={photos[displaySlides.next].image.url}
+				key={"next" + photos[displaySlides.next].image.url}
 				onClick={() => changeSlide(displaySlides.next)}
 				photo={photos[displaySlides.next].image}
 			>
