@@ -44,7 +44,7 @@ const HomeEvents = ({ title, cta }) => {
 		<ColourSection bg="#1B3ECC" fg="#f5f5f5">
 			<Grid className="py-5">
 				<Grid.Col lg="grid-start / col-5" xl="col-3 / col-6">
-					<h2 className="h-1 c-fg ff-condensed ta-lg-right">
+					<h2 className={`h-1 c-fg ff-condensed ta-lg-right ${styles.title}`}>
 						<Text asText content={title} />
 					</h2>
 				</Grid.Col>
