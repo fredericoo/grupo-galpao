@@ -55,7 +55,9 @@ const HomeEvents = ({ title, cta }) => {
 						) : (
 							futureEvents
 								.slice(0, 3)
-								.map((event, key) => <EventRow key={key} event={event} />)
+								.map((event, key) => (
+									<EventRow key={key} event={event} length={1} />
+								))
 						)}
 					</div>
 					<div className="ta-center">
