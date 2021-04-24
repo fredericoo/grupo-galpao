@@ -192,7 +192,7 @@ export default function Post({ doc, premios }) {
 						)}
 					</Grid>
 				</ColourSection>
-				{!!prizes.length && (
+				{prizes && !!prizes.length && (
 					<ColourSection bg="#ffcb05" fg="#000000">
 						<Grid className="c-fg">
 							<Grid.Col>
