@@ -22,6 +22,9 @@ const MemberCard = ({ name, photo, position, link }) => (
 				height={567}
 				alt={name}
 				layout="responsive"
+				sizes="(max-width: 768px) 150px,
+                                    (max-width: 1920px) 300px,
+                                    600px"
 			/>
 		</figure>
 
