@@ -102,8 +102,28 @@ const AboutPage = ({ doc, docs }) => {
 								))}
 						</Columns>
 					</Grid.Col>
+					{groupHasItems(data.team_members) && (
+						<Grid.Col className="py-3">
+							<h2 className="h-2 ta-center mb-3">
+								<Text content={data.team} />
+							</h2>
+							<Columns sm="1" md="2" lg="4" className="fs-sm">
+								{data.team_members.map((entry, key) => (
+									<dl key={key}>
+										<dt className="h-3">
+											<Text content={entry.team_name} />
+										</dt>
+										<dt>
+											<Text content={entry.team_position} />
+										</dt>
+									</dl>
+								))}
+							</Columns>
+						</Grid.Col>
+					)}
 				</Grid>
 			</ColourSection>
+
 			{groupHasItems(data.timeline) && (
 				<ColourSection bg="#0c2fb0" fg="#f5f5f5">
 					<Grid className="py-5">
