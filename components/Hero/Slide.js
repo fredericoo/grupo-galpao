@@ -5,7 +5,7 @@ import Grid from "components/Grid/Grid";
 import Columns from "components/Columns/Columns";
 import Flow from "components/Flow/Flow";
 import Text from "components/Text/Text";
-import Image from "next/image";
+import Placeholder from "components/Placeholder/Placeholder";
 
 import { hrefResolver } from "prismic-configuration";
 
@@ -15,6 +15,26 @@ const Slide = ({ content }) => {
 	return (
 		<AnimatePresence>
 			<div className={styles.slide}>
+				{content.bgimg?.url && (
+					<motion.div
+						initial={{ opacity: 0 }}
+						animate={{
+							opacity: 0.8,
+						}}
+						transition={{
+							type: "spring",
+							stiffness: 300,
+							damping: 90,
+							delay: 0.3,
+						}}
+					>
+						<Placeholder
+							className={styles.bgimg}
+							layout="fill"
+							src={content.bgimg.url}
+						/>
+					</motion.div>
+				)}
 				<motion.div
 					initial={{ translateY: "10%" }}
 					animate={{
@@ -58,12 +78,13 @@ const Slide = ({ content }) => {
 											}}
 											className={styles.logo}
 										>
-											<Image
+											<Placeholder
 												src={content.logo.url}
 												alt={content.logo.alt}
 												layout="fill"
 												quality={100}
 												objectFit="contain"
+												bg="transparent"
 											/>
 										</motion.figure>
 									) : (
@@ -134,7 +155,7 @@ const ImageBit = ({ image, delay }) => (
 				delay: delay || 0.15,
 			}}
 		>
-			<Image
+			<Placeholder
 				src={image.url}
 				alt={image.alt}
 				objectFit="contain"

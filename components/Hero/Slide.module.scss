@@ -1,6 +1,7 @@
 @import "styles/abstracts/mixins";
 
 .slide {
+	position: relative;
 	height: calc(100vh - var(--navbar__height) - 128px);
 	@include responsive($tablet-p) {
 		height: calc(100vh - var(--navbar__height) - 64px);
