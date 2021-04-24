@@ -90,7 +90,14 @@ const CarouselSlide = ({ photo, onClick, children }) => {
 			onClick={onClick}
 		>
 			{children}
-			<Placeholder src={photo.url} {...photoProps} alt={photo.alt} />
+			<Placeholder
+				src={photo.url}
+				{...photoProps}
+				alt={photo.alt}
+				sizes="(max-width: 768px) 300px,
+                                    (max-width: 1920px) 600px,
+                                    1200px"
+			/>
 		</figure>
 	);
 };
