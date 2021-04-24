@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useState } from "react";
 import styles from "./Placeholder.module.scss";
 
-const Placeholder = ({ style, bg = "#f0f0f0", ...props }) => {
+const Placeholder = ({ style, bg = "#000000", ...props }) => {
 	if (!props || !props.src) return null;
 	const [loaded, setLoaded] = useState(false);
 	const handleLoad = (e) => {
