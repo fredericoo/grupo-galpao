@@ -43,6 +43,9 @@ const ShowThumb = ({ doc }) => {
 								height={data.carousel[0].image.dimensions.height}
 								alt={data.carousel[0].image.alt}
 								layout="responsive"
+								sizes="(max-width: 768px) 300px,
+                                    (max-width: 1920px) 600px,
+                                    1200px"
 								bg="var(--fg)"
 							/>
 						)}
