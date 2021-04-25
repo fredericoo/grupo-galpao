@@ -20,6 +20,7 @@ import MemberCard from "components/MemberCard/MemberCard";
 import Prizes from "components/Prizes/Prizes";
 import { AvailableLocalesContext } from "utils/context";
 import { useEffect, useContext } from "react";
+import Link from "next/link";
 
 export default function Post({ doc, premios }) {
 	const { t } = useTranslation();
@@ -176,17 +177,37 @@ export default function Post({ doc, premios }) {
 								<h2 className="h-2 ta-center mb-3">
 									{t("common:fichaTecnica")}
 								</h2>
-								<Columns sm="1" md="2" lg="4" className="fs-sm">
-									{data.technical.map((entry, key) => (
-										<dl key={key}>
-											<dt className="h-3">
-												<Text content={entry.technical_task} />
-											</dt>
-											<dt>
-												<Text content={entry.technical_doer} />
-											</dt>
-										</dl>
-									))}
+
+								<Columns sm="1" md="2" lg="4" className="fs-sm body">
+									{data.technical
+										.filter(
+											(entry) =>
+												entry.technical_member.uid || entry.technical_doer
+										)
+										.map((entry, key) => (
+											<dl key={key}>
+												<h4 className="h-3">
+													<Text content={entry.technical_task} />
+												</h4>
+												<p>
+													{entry.technical_member.uid ? (
+														<Link href={hrefResolver(entry.technical_member)}>
+															<a>
+																<Text
+																	content={
+																		entry.technical_doer ||
+																		entry.technical_member.data?.title
+																	}
+																	asText
+																/>
+															</a>
+														</Link>
+													) : (
+														<Text content={entry.technical_doer} />
+													)}
+												</p>
+											</dl>
+										))}
 								</Columns>
 							</Grid.Col>
 						)}
