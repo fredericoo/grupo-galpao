@@ -14,6 +14,7 @@ import { useState, useEffect } from "react";
 import PaletteSetter from "components/PaletteSetter/PaletteSetter";
 import Background from "components/Background/Background";
 import ContentWrapper from "components/ContentWrapper/ContentWrapper";
+import { ConfigProvider } from "utils/hooks/useConfig";
 
 const App = ({ Component, pageProps }) => {
 	const { locale, asPath } = useRouter();
@@ -36,19 +37,21 @@ const App = ({ Component, pageProps }) => {
 	return (
 		<AvailableLocalesContext.Provider value={availableLocales}>
 			<ColourContext.Provider value={colourPalette}>
-				<PaletteSetter>
-					<Background />
-					{/* <CookieConsent /> */}
-					<NavbarComponent
-						parent={parentPage}
-						isOpen={isOpen}
-						setIsOpen={setIsOpen}
-					/>
-					<ContentWrapper navbarOpen={isOpen}>
-						<Component {...pageProps} />
-					</ContentWrapper>
-					<FooterComponent />
-				</PaletteSetter>
+				<ConfigProvider>
+					<PaletteSetter>
+						<Background />
+						{/* <CookieConsent /> */}
+						<NavbarComponent
+							parent={parentPage}
+							isOpen={isOpen}
+							setIsOpen={setIsOpen}
+						/>
+						<ContentWrapper navbarOpen={isOpen}>
+							<Component {...pageProps} />
+						</ContentWrapper>
+						<FooterComponent />
+					</PaletteSetter>
+				</ConfigProvider>
 			</ColourContext.Provider>
 		</AvailableLocalesContext.Provider>
 	);
