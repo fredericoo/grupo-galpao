@@ -1,36 +1,22 @@
 import styles from "./Footer.module.scss";
 import useTranslation from "next-translate/useTranslation";
 import { hrefResolver } from "prismic-configuration";
-import { Client } from "utils/prismicHelpers";
-import useSWR from "swr";
 
 import Image from "next/image";
 import Link from "next/link";
 import Grid from "components/Grid/Grid";
-import { useRouter } from "next/router";
 import Text from "components/Text/Text";
 import ColourSection from "components/ColourSection/ColourSection";
 import useIsInViewport from "use-is-in-viewport";
 import { groupHasItems } from "utils/groups";
+import { useConfig } from "utils/hooks/useConfig";
 
 const Footer = () => {
 	const { t } = useTranslation();
-	const { locale } = useRouter();
+	const { data: config } = useConfig();
 	const [inView, ref] = useIsInViewport({
 		modBottom: "-50%",
 		modTop: "-49.9%",
-	});
-
-	async function fetcher(lang) {
-		const client = Client();
-		const doc = await client.getSingle("config", {
-			lang,
-			fetchLinks: ["logos.title", "logos.logos"],
-		});
-		return doc.data;
-	}
-	const { data, error } = useSWR(locale, fetcher, {
-		revalidateOnFocus: false,
 	});
 
 	return (
@@ -38,10 +24,10 @@ const Footer = () => {
 			<footer ref={ref} className={`${styles.section}`}>
 				<h2 className="visually-hidden">{t("common:footer")}</h2>
 				<Grid className="s-sm c-fg">
-					<Grid.Col>
-						{data && data.social && (
+					<Grid.Col rowLg="1">
+						{config && config.social && (
 							<div className={styles.social}>
-								{data.social
+								{config.social
 									.filter(
 										(item) => item.icone && (item.link.url || item.link.uid)
 									)
@@ -60,13 +46,12 @@ const Footer = () => {
 							inView ? "" : styles.invisible
 						}`}
 						lg="grid-start / col-10"
-						rowLg="1"
+						rowLg="2"
 						style={{ alignSelf: "end" }}
 					>
-						{!error &&
-							data &&
-							groupHasItems(data.patrocinio) &&
-							data.patrocinio.map(
+						{config &&
+							groupHasItems(config.patrocinio) &&
+							config.patrocinio.map(
 								(sponsor, key) =>
 									sponsor.group?.data && (
 										<div key={key} className={styles.brandGroup}>
@@ -89,13 +74,13 @@ const Footer = () => {
 										</div>
 									)
 							)}
-						{data && data.footer_text && (
+						{config && config.footer_text && (
 							<div className="fs-xs c-fg">
-								<Text content={data.footer_text} />
+								<Text content={config.footer_text} />
 							</div>
 						)}
 					</Grid.Col>
-					<Grid.Col sm="col-10 / screen-end" rowLg="1" className={styles.star}>
+					<Grid.Col sm="col-10 / screen-end" rowLg="2" className={styles.star}>
 						<Image
 							src="/img/star.png"
 							width="1080"

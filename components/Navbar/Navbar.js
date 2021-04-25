@@ -1,36 +1,26 @@
 import styles from "./Navbar.module.scss";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { hrefResolver } from "prismic-configuration";
-import { Client } from "utils/prismicHelpers";
-import useSWR from "swr";
 
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
 import LangPicker from "components/LangPicker/LangPicker";
+import { useConfig } from "utils/hooks/useConfig";
 
 const Navbar = ({ parent, isOpen, setIsOpen }) => {
-	const { asPath, locale } = useRouter();
+	const { asPath } = useRouter();
 	const toggle = () => setIsOpen(!isOpen);
 	const { t } = useTranslation();
+	const { data: config } = useConfig();
+
+	console.log(config);
 
 	useEffect(() => {
 		setIsOpen(false);
 	}, [asPath]);
-
-	async function fetcher(lang) {
-		const client = Client();
-
-		const doc = await client.getSingle("config", {
-			lang: lang,
-		});
-		return doc.data.menu;
-	}
-	const { data: menu, error } = useSWR(locale, fetcher, {
-		revalidateOnFocus: false,
-	});
 
 	return (
 		<nav className={`${styles.navbar} bg-bg`}>
@@ -94,8 +84,8 @@ const Navbar = ({ parent, isOpen, setIsOpen }) => {
 			>
 				<div className={`${styles.tools} ${isOpen ? styles.open : ""}`}>
 					<ul className={styles.menu}>
-						{menu &&
-							menu
+						{config?.menu &&
+							config.menu
 								.filter((option) => option.link.url || option.link.uid)
 								.map((option) => {
 									const href = hrefResolver(option.link);
@@ -119,18 +109,17 @@ const Navbar = ({ parent, isOpen, setIsOpen }) => {
 					<LangPicker />
 				</div>
 			</div>
-			{menu && !error && (
-				<button
-					label={t("common:menu")}
-					className={`${styles.toggler}`}
-					type="button"
-					onClick={toggle}
-				>
-					<div className={`${styles.togglerIcon} ${isOpen ? styles.open : ""}`}>
-						<span></span>
-					</div>
-				</button>
-			)}
+
+			<button
+				label={t("common:menu")}
+				className={`${styles.toggler}`}
+				type="button"
+				onClick={toggle}
+			>
+				<div className={`${styles.togglerIcon} ${isOpen ? styles.open : ""}`}>
+					<span></span>
+				</div>
+			</button>
 		</nav>
 	);
 };
