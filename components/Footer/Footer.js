@@ -21,15 +21,15 @@ const Footer = () => {
 		modTop: "-49.9%",
 	});
 
-	async function fetcher(uid) {
+	async function fetcher(lang) {
 		const client = Client();
 		const doc = await client.getSingle("config", {
-			lang: locale,
+			lang,
 			fetchLinks: ["logos.title", "logos.logos"],
 		});
 		return doc.data;
 	}
-	const { data, error } = useSWR("footer", fetcher, {
+	const { data, error } = useSWR(locale, fetcher, {
 		revalidateOnFocus: false,
 	});
 
