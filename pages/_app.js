@@ -40,7 +40,7 @@ const App = ({ Component, pageProps }) => {
 				<ConfigProvider>
 					<PaletteSetter>
 						<Background />
-						<CookieConsent />
+						{/* <CookieConsent /> */}
 						<NavbarComponent
 							parent={parentPage}
 							isOpen={isOpen}
