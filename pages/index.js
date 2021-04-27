@@ -7,14 +7,16 @@ import HomeProducts from "components/Home/HomeProducts/HomeProducts";
 import Meta from "components/Meta/Meta";
 import HomeEvents from "components/Home/HomeEvents/HomeEvents";
 import HomeInstagram from "components/Home/HomeInstagram/HomeInstagram";
+import { useRouter } from "next/router";
 
 export default function Home({ doc }) {
 	if (!doc?.data) return null;
+	const { locale } = useRouter();
 
 	return (
 		<>
 			<Meta />
-			<Hero banners={doc.data.banners} />
+			<Hero key={`hero-${locale}`} banners={doc.data.banners} />
 			<HomeEvents title={doc.data.events_title} cta={doc.data.events_cta} />
 			<HomeAbout home={doc.data} />
 			<HomeInstagram count={4} />
