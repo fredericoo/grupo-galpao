@@ -3,17 +3,21 @@ import useTranslation from "next-translate/useTranslation";
 import styles from "./LangPicker.module.scss";
 import Link from "next/link";
 import { AvailableLocalesContext } from "utils/context";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 const LangPicker = () => {
 	const router = useRouter();
 	const [altLangs] = useContext(AvailableLocalesContext);
-	const altLocales = altLangs
-		? altLangs.map((lang) => lang.lang)
-		: router.locales;
-	const availableLocales = router.locales.filter(
-		(lang) => lang === router.locale || altLocales.includes(lang)
-	);
+	const [availableLocales, setAvailableLocales] = useState([]);
+	useEffect(() => {
+		const altLocales = altLangs
+			? altLangs.map((lang) => lang.lang)
+			: router.locales;
+		const available = router.locales.filter(
+			(lang) => lang === router.locale || altLocales.includes(lang)
+		);
+		setAvailableLocales(available);
+	}, [router, altLangs]);
 
 	let { t } = useTranslation();
 	return (
@@ -23,10 +27,7 @@ const LangPicker = () => {
 					<li key={locale}>
 						<Link
 							href={
-								(altLangs &&
-									altLangs.find((x) => x.lang == locale) &&
-									altLangs.find((x) => x.lang == locale).uid) ||
-								router.asPath
+								altLangs?.find((x) => x.lang == locale)?.uid || router.asPath
 							}
 							locale={locale}
 						>
