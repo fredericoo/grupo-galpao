@@ -23,7 +23,7 @@ const Navbar = ({ parent, isOpen, setIsOpen }) => {
 	return (
 		<nav className={`${styles.navbar} bg-bg`}>
 			<div className={`${styles.backBtn} c-fg`}>
-				{!!parent && (
+				{parent ? (
 					<Link href={parent}>
 						<a>
 							<svg
@@ -42,6 +42,10 @@ const Navbar = ({ parent, isOpen, setIsOpen }) => {
 							</svg>
 						</a>
 					</Link>
+				) : (
+					<div className={styles.navbarPicker}>
+						<LangPicker />
+					</div>
 				)}
 			</div>
 			<div className={styles.logo}>
@@ -82,6 +86,9 @@ const Navbar = ({ parent, isOpen, setIsOpen }) => {
 			>
 				<div className={`${styles.tools} ${isOpen ? styles.open : ""}`}>
 					<ul className={styles.menu}>
+						<li>
+							<LangPicker />
+						</li>
 						{config?.menu &&
 							config.menu
 								.filter((option) => option.link.url || option.link.uid)
@@ -104,7 +111,6 @@ const Navbar = ({ parent, isOpen, setIsOpen }) => {
 									);
 								})}
 					</ul>
-					<LangPicker />
 				</div>
 			</div>
 

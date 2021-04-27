@@ -160,6 +160,13 @@
 	}
 }
 
+.navbarPicker {
+	display: none;
+	@include responsive($tablet-p) {
+		display: block;
+	}
+}
+
 .logo {
 	// position: absolute;
 	// top: 0;
