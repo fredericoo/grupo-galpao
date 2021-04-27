@@ -33,7 +33,7 @@ export const HomeInstagram = ({ count = 3 }) => {
 						{posts.slice(0, count).map((post, key) => (
 							<Post
 								key={key}
-								imageSrc={post.node?.display_url}
+								imageSrc={post.node?.thumbnail_url}
 								commentCount={post.node?.edge_media_to_comment.count}
 								likeCount={post.node?.edge_media_preview_like.count}
 								caption={post.node?.edge_media_to_caption.edges[0].node.text}
@@ -74,6 +74,7 @@ const Post = ({
 							width="1080"
 							height="1080"
 							src={imageSrc}
+							unoptimized
 							layout="responsive"
 						/>
 					)}
