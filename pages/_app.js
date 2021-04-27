@@ -31,7 +31,7 @@ const App = ({ Component, pageProps }) => {
 	useEffect(() => {
 		const parent = asPath.match(/\/([a-zA-z\-0-9\_]+)\//g)?.pop();
 
-		setParent(parent);
+		setParent(parent || "");
 	}, [asPath]);
 
 	return (
@@ -40,7 +40,7 @@ const App = ({ Component, pageProps }) => {
 				<ConfigProvider>
 					<PaletteSetter>
 						<Background />
-						{/* <CookieConsent /> */}
+						<CookieConsent />
 						<NavbarComponent
 							parent={parentPage}
 							isOpen={isOpen}
