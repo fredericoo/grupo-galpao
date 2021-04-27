@@ -42,7 +42,7 @@ const HomeAbout = ({ home }) => {
 					<div className={`body fs-sm ${styles.text}`}>
 						{home.sobre_texto && <Text content={home.sobre_texto} />}
 						{home.sobre_link && (
-							<Button href={hrefResolver(home.sobre_link)} type="ghost">
+							<Button href={hrefResolver(home.sobre_link)} type="primary">
 								<Text asText content={home.sobre_cta} />
 							</Button>
 						)}
