@@ -53,7 +53,7 @@ const HomeProducts = ({ subtitle, title, text, link, cta }) => {
 				>
 					{text && <Text content={text} />}
 					{link && (
-						<Button href={hrefResolver(link)} type="ghost">
+						<Button href={hrefResolver(link)} target="_blank" type="primary">
 							{cta}
 						</Button>
 					)}
