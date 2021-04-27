@@ -114,7 +114,7 @@ const Slide = ({ content }) => {
 									>
 										{content.text && <Text content={content.text} />}
 										{!content.text2?.length && content.link && content.cta && (
-											<Button href={hrefResolver(content.link)} type="ghost">
+											<Button href={hrefResolver(content.link)} type="primary">
 												{content.cta}
 											</Button>
 										)}
@@ -122,7 +122,7 @@ const Slide = ({ content }) => {
 									<div className={`${styles.textBlock} body fs-sm`}>
 										{content.text2 && <Text content={content.text2} />}
 										{!!content.text2?.length && content.link && content.cta && (
-											<Button href={hrefResolver(content.link)} type="ghost">
+											<Button href={hrefResolver(content.link)} type="primary">
 												{content.cta}
 											</Button>
 										)}
