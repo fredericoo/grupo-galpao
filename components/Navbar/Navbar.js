@@ -16,8 +16,6 @@ const Navbar = ({ parent, isOpen, setIsOpen }) => {
 	const { t } = useTranslation();
 	const { data: config } = useConfig();
 
-	console.log(config);
-
 	useEffect(() => {
 		setIsOpen(false);
 	}, [asPath]);
