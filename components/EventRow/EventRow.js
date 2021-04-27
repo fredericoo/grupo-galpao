@@ -15,7 +15,7 @@ export const EventRow = ({ event, length }) => (
 				.slice(0, length || event.data.dates.length)
 				.map((range, key) => (
 					<Grid key={key} subgrid className="mb-2">
-						<Grid.Col sm="span 4" className="h-2 ff-condensed ta-lg-right">
+						<Grid.Col sm="span 4" className="h-3 ff-condensed ta-lg-right">
 							<DateRange
 								from={range.dates_from}
 								to={range.dates_to}
@@ -31,7 +31,7 @@ export const EventRow = ({ event, length }) => (
 							</div>
 							<Link href={hrefResolver(event)}>
 								<a className={styles.link}>
-									<h3 className={`h-2 mb-2`}>
+									<h3 className={`h-3 mb-2`}>
 										<span className="">
 											<Text content={event.data.title} asText />
 										</span>
