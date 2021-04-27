@@ -5,6 +5,7 @@ const Button = ({
 	children,
 	href,
 	onClick,
+	target,
 	type = "primary",
 	size = "md",
 	disabled = false,
@@ -27,7 +28,9 @@ const Button = ({
 
 	return (
 		<Link href={href}>
-			<a className={buttonClass}>{children}</a>
+			<a target={target} className={buttonClass}>
+				{children}
+			</a>
 		</Link>
 	);
 };
