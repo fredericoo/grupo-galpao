@@ -74,7 +74,6 @@ const Post = ({
 							width="1080"
 							height="1080"
 							src={imageSrc}
-							unoptimized
 							layout="responsive"
 						/>
 					)}
