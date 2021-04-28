@@ -19,29 +19,35 @@ const LangPicker = () => {
 		setAvailableLocales(available);
 	}, [router, altLangs]);
 
-	let { t } = useTranslation();
 	return (
 		<ul className={`${styles.locales}`}>
 			{availableLocales.length > 1 &&
 				availableLocales.map((locale) => (
-					<li key={locale}>
-						<Link
-							href={
-								altLangs?.find((x) => x.lang == locale)?.uid || router.asPath
-							}
-							locale={locale}
-						>
-							<a
-								className={`smcp ${styles.locale} ${
-									locale === router.locale ? styles.active : ""
-								}`}
-							>
-								{t(`common:locales.${locale}`)}
-							</a>
-						</Link>
-					</li>
+					<Lang
+						key={locale}
+						locale={locale}
+						path={router.asPath}
+						active={locale === router.locale}
+						altLangs={altLangs}
+					/>
 				))}
 		</ul>
+	);
+};
+
+const Lang = ({ altLangs, locale, active = false, path }) => {
+	let { t } = useTranslation();
+	return (
+		<li key={locale}>
+			<Link
+				href={altLangs?.find((x) => x.lang == locale)?.uid || path}
+				locale={locale}
+			>
+				<a className={`smcp ${styles.locale} ${active ? styles.active : ""}`}>
+					{t(`common:locales.${locale}`)}
+				</a>
+			</Link>
+		</li>
 	);
 };
 
