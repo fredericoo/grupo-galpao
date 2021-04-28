@@ -106,26 +106,41 @@ const Slide = ({ content }) => {
 								</header>
 								<Columns
 									sm={1}
-									lg={!!content.text2?.length && !!content.text?.length ? 2 : 1}
+									lg={
+										!!content.text2[0]?.text?.length &&
+										!!content.text[0]?.text?.length
+											? 2
+											: 1
+									}
 								>
 									<div
 										className={`${styles.textBlock} body fs-sm 
-										${!content.text2?.length && !!content.text?.length ? "ta-center" : ""}`}
+										${!content.text2[0]?.text?.length ? "ta-center" : ""}`}
 									>
 										{content.text && <Text content={content.text} />}
-										{!content.text2?.length && content.link && content.cta && (
-											<Button href={hrefResolver(content.link)} type="primary">
-												{content.cta}
-											</Button>
-										)}
+										{!content.text2[0]?.text?.length &&
+											content.link &&
+											content.cta && (
+												<Button
+													href={hrefResolver(content.link)}
+													type="primary"
+												>
+													{content.cta}
+												</Button>
+											)}
 									</div>
 									<div className={`${styles.textBlock} body fs-sm`}>
 										{content.text2 && <Text content={content.text2} />}
-										{!!content.text2?.length && content.link && content.cta && (
-											<Button href={hrefResolver(content.link)} type="primary">
-												{content.cta}
-											</Button>
-										)}
+										{!!content.text2[0]?.text?.length &&
+											content.link &&
+											content.cta && (
+												<Button
+													href={hrefResolver(content.link)}
+													type="primary"
+												>
+													{content.cta}
+												</Button>
+											)}
 									</div>
 								</Columns>
 							</Flow>
