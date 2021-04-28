@@ -12,7 +12,7 @@ const Meta = ({ pageTitle, pageDesc, pageType, pageImage }) => {
 		desc: pageDesc ? pageDesc : t("common:desc"),
 	};
 
-	const seoImage = pageImage || "";
+	const seoImage = pageImage || "/favicons/fallback_seo.png";
 
 	return (
 		<Head>
