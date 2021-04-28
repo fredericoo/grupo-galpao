@@ -33,7 +33,7 @@ export const HomeInstagram = ({ count = 3 }) => {
 						{posts.slice(0, count).map((post, key) => (
 							<Post
 								key={key}
-								imageSrc={post.node?.thumbnail_url}
+								imageSrc={post.node?.thumbnail_src}
 								commentCount={post.node?.edge_media_to_comment.count}
 								likeCount={post.node?.edge_media_preview_like.count}
 								caption={post.node?.edge_media_to_caption.edges[0].node.text}
