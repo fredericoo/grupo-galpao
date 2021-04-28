@@ -6,10 +6,13 @@ import Meta from "components/Meta/Meta";
 import Grid from "components/Grid/Grid";
 import ColourSection from "components/ColourSection/ColourSection";
 import Text from "components/Text/Text";
+import { useEffect, useContext } from "react";
+import { AvailableLocalesContext } from "utils/context";
 
 const AboutPage = ({ doc }) => {
 	const data = doc.data;
-
+	const [, setAvailableLocales] = useContext(AvailableLocalesContext);
+	useEffect(() => doc && setAvailableLocales(doc.alternate_languages), [doc]);
 	return (
 		<>
 			{data && (

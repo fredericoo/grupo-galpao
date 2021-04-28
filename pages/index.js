@@ -1,7 +1,6 @@
 import Hero from "../components/Hero/Hero";
 
 import { Client } from "utils/prismicHelpers";
-import Calendar from "components/Calendar/Calendar";
 import HomeAbout from "components/Home/HomeAbout/HomeAbout";
 import HomeProducts from "components/Home/HomeProducts/HomeProducts";
 import Meta from "components/Meta/Meta";
@@ -9,10 +8,15 @@ import HomeEvents from "components/Home/HomeEvents/HomeEvents";
 import HomeInstagram from "components/Home/HomeInstagram/HomeInstagram";
 import { useRouter } from "next/router";
 
+import { useEffect, useContext } from "react";
+import { AvailableLocalesContext } from "utils/context";
+
 export default function Home({ doc }) {
 	if (!doc?.data) return null;
 	const { locale } = useRouter();
 
+	const [, setAvailableLocales] = useContext(AvailableLocalesContext);
+	useEffect(() => doc && setAvailableLocales(doc.alternate_languages), [doc]);
 	return (
 		<>
 			<Meta />

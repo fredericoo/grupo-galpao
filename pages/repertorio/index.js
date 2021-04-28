@@ -7,14 +7,18 @@ import Text from "components/Text/Text";
 import ShowThumb from "components/ShowThumb/ShowThumb";
 import Flow from "components/Flow/Flow";
 import { RichText } from "prismic-reactjs";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import useTranslation from "next-translate/useTranslation";
 import Button from "components/Button/Button";
+import { AvailableLocalesContext } from "utils/context";
 
 const Shows = ({ docs, doc }) => {
 	const page = doc.data;
 	const [show, setShow] = useState(10);
 	const { t } = useTranslation();
+
+	const [, setAvailableLocales] = useContext(AvailableLocalesContext);
+	useEffect(() => doc && setAvailableLocales(doc.alternate_languages), [doc]);
 
 	const nextPage = () => setShow(show + 10);
 

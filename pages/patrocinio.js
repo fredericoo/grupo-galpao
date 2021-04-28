@@ -11,10 +11,15 @@ import Body from "components/Body/Body";
 import Flow from "components/Flow/Flow";
 import Placeholder from "components/Placeholder/Placeholder";
 import Button from "components/Button/Button";
+import { useEffect, useContext } from "react";
+import { AvailableLocalesContext } from "utils/context";
 
 const Patrocinio = ({ doc }) => {
 	if (!doc) return null;
 	const data = doc.data;
+
+	const [, setAvailableLocales] = useContext(AvailableLocalesContext);
+	useEffect(() => doc && setAvailableLocales(doc.alternate_languages), [doc]);
 
 	return (
 		<>

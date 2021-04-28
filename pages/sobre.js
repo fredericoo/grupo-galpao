@@ -13,10 +13,15 @@ import MemberCard from "components/MemberCard/MemberCard";
 import Metric from "components/Metric/Metric";
 import Timeline from "components/Timeline/Timeline";
 import Prizes from "components/Prizes/Prizes";
+import { useEffect, useContext } from "react";
+import { AvailableLocalesContext } from "utils/context";
 
 const AboutPage = ({ doc, docs }) => {
 	const data = doc.data;
 	if (!data) return null;
+
+	const [, setAvailableLocales] = useContext(AvailableLocalesContext);
+	useEffect(() => doc && setAvailableLocales(doc.alternate_languages), [doc]);
 
 	return (
 		<>

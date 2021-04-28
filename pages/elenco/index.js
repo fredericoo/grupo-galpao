@@ -9,10 +9,13 @@ import Grid from "components/Grid/Grid";
 import Text from "components/Text/Text";
 import Columns from "components/Columns/Columns";
 import MemberCard from "components/MemberCard/MemberCard";
+import { useEffect, useContext } from "react";
+import { AvailableLocalesContext } from "utils/context";
 
 const Shows = ({ docs, doc }) => {
 	const page = doc.data;
-
+	const [, setAvailableLocales] = useContext(AvailableLocalesContext);
+	useEffect(() => doc && setAvailableLocales(doc.alternate_languages), [doc]);
 	return (
 		<ColourSection bg="#141415" fg="#fafafa">
 			{page && (

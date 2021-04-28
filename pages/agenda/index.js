@@ -16,6 +16,8 @@ import EventRow from "components/EventRow/EventRow";
 import Calendar from "components/Calendar/Calendar";
 import Loader from "components/Loader/Loader";
 import useSWR from "swr";
+import { useContext } from "react";
+import { AvailableLocalesContext } from "utils/context";
 
 const splitEventDates = (event) =>
 	event.data.dates.map((range) => ({
@@ -29,6 +31,9 @@ const splitEventDates = (event) =>
 const Agenda = ({ doc }) => {
 	const { data: shows, error: errorShows } = useSWR("show", fetchAllOfType);
 	const { data: events, error: errorEvents } = useSWR("event", fetchAllOfType);
+
+	const [, setAvailableLocales] = useContext(AvailableLocalesContext);
+	useEffect(() => doc && setAvailableLocales(doc.alternate_languages), [doc]);
 
 	const { t } = useTranslation();
 	const [selectedDate, setDate] = useState();

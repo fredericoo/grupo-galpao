@@ -17,7 +17,7 @@ const LangPicker = () => {
 			(lang) => lang === router.locale || altLocales.includes(lang)
 		);
 		setAvailableLocales(available);
-	}, [router, altLangs]);
+	}, [router.asPath, router.locale, altLangs]);
 
 	return (
 		<ul className={`${styles.locales}`}>
