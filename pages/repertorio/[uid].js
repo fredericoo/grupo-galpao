@@ -21,6 +21,7 @@ import Prizes from "components/Prizes/Prizes";
 import { AvailableLocalesContext } from "utils/context";
 import { useEffect, useContext } from "react";
 import Link from "next/link";
+import VideoPlayer from "components/VideoPlayer/VideoPlayer";
 
 export default function Post({ doc, premios }) {
 	const { t } = useTranslation();
@@ -148,6 +149,16 @@ export default function Post({ doc, premios }) {
 									))}
 							</Flow>
 						</Grid.Col>
+						{data.video.html && (
+							<Grid.Col lg="col-3 / col-11">
+								<VideoPlayer
+									html={data.video.html}
+									height="1080"
+									width="1920"
+									layout="responsive"
+								/>
+							</Grid.Col>
+						)}
 						{!!data.cast.length && (
 							<Grid.Col className="py-3 c-fg">
 								<h2 className="h-2 ta-center mb-3">{t("common:elenco")}</h2>

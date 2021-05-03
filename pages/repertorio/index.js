@@ -11,6 +11,7 @@ import { useState, useContext, useEffect } from "react";
 import useTranslation from "next-translate/useTranslation";
 import Button from "components/Button/Button";
 import { AvailableLocalesContext } from "utils/context";
+import Filter from "components/Filter";
 
 const Shows = ({ docs, doc }) => {
 	const page = doc.data;
@@ -21,6 +22,12 @@ const Shows = ({ docs, doc }) => {
 	useEffect(() => doc && setAvailableLocales(doc.alternate_languages), [doc]);
 
 	const nextPage = () => setShow(show + 10);
+
+	const [filter, setFilter] = useState("");
+	const categories = Array.from(new Set(docs.map((doc) => doc.data.category)));
+	const filteredDocs = docs.filter(
+		(doc) => !filter || doc.data.category === filter
+	);
 
 	const sortDocsByLatestDate = (docs) => {
 		const getLatestActivity = (activity) => {
@@ -54,15 +61,20 @@ const Shows = ({ docs, doc }) => {
 						<h1 className="h-1">
 							<Text content={page.title} asText />
 						</h1>
+						<Filter
+							categories={categories}
+							setFilter={setFilter}
+							filter={filter}
+						/>
 					</Grid.Col>
 					<Grid.Col>
 						<Flow spacing="4rem">
 							{!!docs.length &&
-								sortDocsByLatestDate(docs)
+								sortDocsByLatestDate(filteredDocs)
 									.slice(0, show)
 									.map((doc, key) => <ShowThumb key={key} doc={doc} />)}
 						</Flow>
-						{docs.length > show && (
+						{filteredDocs.length > show && (
 							<div className="ta-center py-3">
 								<Button type="ghost" onClick={nextPage}>
 									{t("common:carregarMais")}

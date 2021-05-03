@@ -188,12 +188,12 @@
 			animation: none;
 			transform: none;
 		}
-		@include on-event {
-			.star {
-				animation: spinning 3s linear infinite;
-				transform: none;
-			}
-		}
+		// @include on-event {
+		// 	.star {
+		// 		animation: spinning 3s linear infinite;
+		// 		transform: none;
+		// 	}
+		// }
 		@include responsive($tablet-l) {
 			transform: translateX(calc(-50% + 1rem));
 		}
@@ -203,11 +203,11 @@
 	}
 }
 
-@keyframes spinning {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg);
-	}
-}
+// @keyframes spinning {
+// 	from {
+// 		transform: rotate(0deg);
+// 	}
+// 	to {
+// 		transform: rotate(360deg);
+// 	}
+// }

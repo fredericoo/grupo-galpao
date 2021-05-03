@@ -22,6 +22,10 @@ const Hero = ({ banners }) => {
 		next: slide + 1 >= banners.length ? 0 : slide + 1,
 	};
 
+	useEffect(() => {
+		if (!isInViewport) setInteracted(true);
+	}, [isInViewport]);
+
 	const changeSlide = (slideNo) => {
 		const current = banners[slideNo];
 		setPalette({
@@ -34,12 +38,12 @@ const Hero = ({ banners }) => {
 
 	useEffect(() => {
 		clearTimeout(interval.current);
-		if (!interacted && isInViewport) {
+		if (!interacted) {
 			const nextSlide = () => changeSlide(slides.next);
 			interval.current = setTimeout(() => nextSlide(), 6000);
 		}
 		return () => clearTimeout(interval.current);
-	}, [interacted, slide]);
+	}, [slide, interacted]);
 
 	return (
 		<section
