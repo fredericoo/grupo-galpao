@@ -45,5 +45,11 @@
 		"pt-br": "PT",
 		"es-uy": "ES",
 		"en-gb": "EN"
+	},
+	"categories": {
+		"Todos": "All",
+		"Especial": "Special",
+		"Atual": "Current",
+		"Passado": "Past"
 	}
 }
