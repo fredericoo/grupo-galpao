@@ -5,6 +5,7 @@ import Grid from "components/Grid/Grid";
 import Columns from "components/Columns/Columns";
 import { RichText } from "prismic-reactjs";
 import { Client } from "utils/prismicHelpers";
+import Meta from "components/Meta/Meta";
 
 const PrizesPage = ({ doc }) => {
 	const data = doc.data;
@@ -12,6 +13,10 @@ const PrizesPage = ({ doc }) => {
 
 	return (
 		<>
+			<Meta
+				pageTitle={data.seo_title || RichText.asText(data.title_prizes)}
+				pageDesc={data.seo_desc}
+			/>
 			{groupHasItems(data.prizes) && (
 				<ColourSection bg="#ffcb05" fg="#000000">
 					<Grid className="c-fg">
