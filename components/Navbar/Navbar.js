@@ -24,7 +24,7 @@ const Navbar = ({ parent, isOpen, setIsOpen }) => {
 		<nav className={`${styles.navbar} bg-bg`}>
 			<div className={`${styles.backBtn} c-fg`}>
 				{parent ? (
-					<Link href={parent}>
+					<Link href={parent || "/"}>
 						<a>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -91,9 +91,10 @@ const Navbar = ({ parent, isOpen, setIsOpen }) => {
 						</li>
 						{config?.menu &&
 							config.menu
-								.filter((option) => option.link.url || option.link.uid)
+								.filter((option) => option.link.url || option.link.id)
 								.map((option) => {
 									const href = hrefResolver(option.link);
+									console.log(option.label, href);
 									if (typeof href === undefined) return;
 									return (
 										<li key={option.label}>
