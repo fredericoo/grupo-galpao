@@ -21,6 +21,9 @@ module.exports = {
 		if (doc.type === "homepage") {
 			return `/${doc.lang}`;
 		}
+		if (doc.type === "premios_e_festivais") {
+			return `/${doc.lang}/premios-festivais`;
+		}
 		if (doc.link_type === "Web") {
 			return doc.url;
 		}
@@ -40,6 +43,9 @@ module.exports = {
 		}
 		if (doc.type === "event") {
 			return `/${doc.lang}/agenda/${doc.uid}`;
+		}
+		if (doc.type === "premios_e_festivais") {
+			return `/${doc.lang}/premios-festivais`;
 		}
 		if (doc.type === "homepage") {
 			return `/${doc.lang}`;
