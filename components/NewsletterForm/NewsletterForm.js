@@ -6,15 +6,14 @@ const NewsletterForm = () => {
 		<>
 			<Head>
 				<script
-					src="https://optin.entregaemails.com.br/accounts/105267/forms/3"
+					src="https://optin.entregaemails.com.br/accounts/105267/forms/14"
 					type="text/javascript"
 					charset="utf-8"
 					async
 					defer
 				></script>
 			</Head>
-
-			<div className={styles.form} id="opt_3"></div>
+			<div className={styles.form} id="opt_14"></div>
 		</>
 	);
 };
