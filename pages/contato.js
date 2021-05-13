@@ -6,6 +6,7 @@ import Meta from "components/Meta/Meta";
 import Grid from "components/Grid/Grid";
 import ColourSection from "components/ColourSection/ColourSection";
 import Text from "components/Text/Text";
+import NewsletterForm from "components/NewsletterForm/NewsletterForm";
 import { useEffect, useContext } from "react";
 import { AvailableLocalesContext } from "utils/context";
 
@@ -22,6 +23,11 @@ const AboutPage = ({ doc }) => {
 						pageDesc={data.seo_desc}
 						pageImage={data.seo_img.url}
 					/>
+					<Grid>
+						<Grid.Col lg="col-7 / grid-end">
+							<NewsletterForm />
+						</Grid.Col>
+					</Grid>
 					<Grid className="py-5">
 						<Grid.Col lg="grid-start / col-7">
 							{data.title && (
