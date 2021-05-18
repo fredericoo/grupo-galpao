@@ -11,6 +11,7 @@ module.exports = {
 			"images.prismic.io",
 			"galpao.cdn.prismic.io",
 			"images.tcdn.com.br",
+			"scontent-lga3-1.cdninstagram.com",
 			"scontent-iad3-2.cdninstagram.com",
 		],
 		deviceSizes: [320, 640, 750, 828, 1080, 1200, 1920, 2048],
