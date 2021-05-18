@@ -23,7 +23,7 @@ export default function Home({ doc }) {
 			<Hero key={`hero-${locale}`} banners={doc.data.banners} />
 			<HomeEvents title={doc.data.events_title} cta={doc.data.events_cta} />
 			<HomeAbout home={doc.data} />
-			<HomeInstagram count={4} />
+			{/* <HomeInstagram count={4} /> */}
 			<HomeProducts
 				subtitle={doc.data.souvenirs_subtitle}
 				title={doc.data.souvenirs_title}
