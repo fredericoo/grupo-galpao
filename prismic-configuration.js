@@ -18,7 +18,7 @@ module.exports = {
 		if (doc.type === "event") {
 			return `/${doc.lang}/agenda/${doc.uid}`;
 		}
-		if (doc.type === "homepage") {
+		if (doc.type === "home") {
 			return `/${doc.lang}`;
 		}
 		if (doc.type === "premios_e_festivais") {
@@ -47,7 +47,7 @@ module.exports = {
 		if (doc.type === "premios_e_festivais") {
 			return `/${doc.lang}/premios-festivais`;
 		}
-		if (doc.type === "homepage") {
+		if (doc.type === "home") {
 			return `/${doc.lang}`;
 		}
 		if (doc.link_type === "Web") {
