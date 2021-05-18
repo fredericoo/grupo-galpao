@@ -23,6 +23,7 @@ const AboutPage = ({ doc }) => {
 						pageDesc={data.seo_desc}
 						pageImage={data.seo_img.url}
 					/>
+
 					<Grid className="py-5">
 						<Grid.Col lg="grid-start / col-7">
 							{data.title && (
@@ -32,7 +33,6 @@ const AboutPage = ({ doc }) => {
 							)}
 						</Grid.Col>
 						<Grid.Col lg="col-7 / grid-end" className={`my-5 ${styles.formas}`}>
-							<NewsletterForm />
 							<ul>
 								{groupHasItems(data.formas) &&
 									data.formas.map((forma, key) => (
@@ -44,6 +44,14 @@ const AboutPage = ({ doc }) => {
 										</li>
 									))}
 							</ul>
+						</Grid.Col>
+					</Grid>
+					<Grid>
+						<Grid.Col lg="grid-start / col-7">
+							<h2 className="h-2 c-fg">Newsletter</h2>
+						</Grid.Col>
+						<Grid.Col lg="col-7 / grid-end">
+							<NewsletterForm />
 						</Grid.Col>
 					</Grid>
 				</ColourSection>
