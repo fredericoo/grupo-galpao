@@ -12,7 +12,7 @@ import Columns from "components/Columns/Columns";
 import MemberCard from "components/MemberCard/MemberCard";
 import Metric from "components/Metric/Metric";
 import Timeline from "components/Timeline/Timeline";
-import Prizes from "components/Prizes/Prizes";
+
 import { useEffect, useContext } from "react";
 import { AvailableLocalesContext } from "utils/context";
 
@@ -148,15 +148,6 @@ const AboutPage = ({ doc, docs }) => {
 								alt={data.img3.alt}
 								layout="responsive"
 							/>
-						</Grid.Col>
-					</Grid>
-				</ColourSection>
-			)}
-			{groupHasItems(data.prizes) && (
-				<ColourSection bg="#ffcb05" fg="#000000">
-					<Grid className="c-fg">
-						<Grid.Col>
-							<Prizes entries={data.prizes} />
 						</Grid.Col>
 					</Grid>
 				</ColourSection>
