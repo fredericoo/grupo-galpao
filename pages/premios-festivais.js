@@ -59,7 +59,7 @@ const PrizesPage = ({ doc }) => {
 							<h2 className="c-fg ta-center h-2 my-5">
 								{RichText.asText(data.title_international)}
 							</h2>
-							<Columns lg={3} md={2} className="c-fg">
+							<Columns sm={1} md={2} lg={3} className="c-fg">
 								{data.festival1
 									.sort((a, b) => b.year - a.year)
 									.map((festival) => (
