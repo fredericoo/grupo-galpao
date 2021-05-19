@@ -108,7 +108,7 @@ export default function Post({ doc }) {
 							className="c-fg fs-sm"
 						>
 							<Flow spacing="2rem">
-								{data.link && (
+								{data.link.url && data.cta && (
 									<Button
 										size="lg"
 										className="ta-center"
