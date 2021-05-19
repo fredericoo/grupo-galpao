@@ -83,6 +83,18 @@ const Agenda = ({ doc }) => {
 			);
 	}, [selectedDate, shows, events]);
 
+	const getEarliestDate = (event) =>
+		moment(
+			event?.data?.dates?.sort(
+				(a, b) => moment(event.dates_from).unix() - moment(b.dates_from).unix()
+			)[0].dates_from
+		).unix() || 0;
+
+	const sortByDateFrom = (a, b) => {
+		console.log(getEarliestDate(a), getEarliestDate(b));
+		return getEarliestDate(a) - getEarliestDate(b);
+	};
+
 	return (
 		<ColourSection bg="#1b3ecc" fg="#f5f5f5">
 			{doc?.data && (
@@ -116,9 +128,9 @@ const Agenda = ({ doc }) => {
 						{!errorEvents && !events && !errorShows && !shows ? (
 							<Loader />
 						) : (
-							visibleEvents.map((event, key) => (
-								<EventRow key={key} event={event} />
-							))
+							visibleEvents
+								.sort(sortByDateFrom)
+								.map((event, key) => <EventRow key={key} event={event} />)
 						)}
 					</Grid.Col>
 				</Grid>
