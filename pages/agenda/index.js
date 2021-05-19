@@ -86,12 +86,11 @@ const Agenda = ({ doc }) => {
 	const getEarliestDate = (event) =>
 		moment(
 			event?.data?.dates?.sort(
-				(a, b) => moment(event.dates_from).unix() - moment(b.dates_from).unix()
+				(a, b) => moment(a.dates_from).unix() - moment(b.dates_from).unix()
 			)[0].dates_from
 		).unix() || 0;
 
 	const sortByDateFrom = (a, b) => {
-		console.log(getEarliestDate(a), getEarliestDate(b));
 		return getEarliestDate(a) - getEarliestDate(b);
 	};
 
