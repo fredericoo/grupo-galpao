@@ -49,31 +49,16 @@ const Footer = () => {
 						rowLg="2"
 						style={{ alignSelf: "end" }}
 					>
-						{config &&
-							groupHasItems(config.patrocinio) &&
-							config.patrocinio.map(
-								(sponsor, key) =>
-									sponsor.group?.data && (
-										<div key={key} className={styles.brandGroup}>
-											<h3 className="h-4">
-												<Text content={sponsor.group.data.title} asText />
-											</h3>
-											<ul>
-												{sponsor.group.data.logos.map((item, key) => (
-													<li key={key}>
-														<Image
-															src={item.logo.url}
-															alt={item.logo.alt}
-															layout="fill"
-															objectFit="contain"
-															objectPosition="left center"
-														/>
-													</li>
-												))}
-											</ul>
-										</div>
-									)
-							)}
+						{config?.barrado?.url && (
+							<div className={styles.barrado}>
+								<Image
+									src={config.barrado.url}
+									width={config.barrado.dimensions.width}
+									height={config.barrado.dimensions.height}
+									layout="responsive"
+								/>
+							</div>
+						)}
 						{config && config.footer_text && (
 							<div className="fs-xs c-fg">
 								<Text content={config.footer_text} />
