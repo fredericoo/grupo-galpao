@@ -19,7 +19,9 @@
 	.logo {
 		position: relative;
 		width: 100%;
-		height: calc(64px + 10vw);
+		max-width: 400px;
+		margin: auto;
+		// height: calc(64px + 10vw);
 	}
 }
 

@@ -81,7 +81,9 @@ const Slide = ({ content }) => {
 											<Placeholder
 												src={content.logo.url}
 												alt={content.logo.alt}
-												layout="fill"
+												width={content.logo.dimensions.width}
+												height={content.logo.dimensions.height}
+												layout="responsive"
 												quality={100}
 												objectFit="contain"
 												bg="transparent"
