@@ -51,7 +51,7 @@ const FutureDates = ({ uid }) => {
 									</h3>
 									<p>
 										{formatDateRange(range.dates_from, range.dates_to, [
-											(date) => date.format("hh:mm"),
+											(date) => date.format("LT"),
 										])}
 									</p>
 									<div className="fs-xs my-1">
